@@ -9,15 +9,22 @@ class Home extends StatelessWidget {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(20.0),
         child: Container(
           child: Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Button(title: "Stack",),
-                  Button(title: "Queue",),
+                  Button(
+                    title: "Stack",
+                    callback: (){
+                      Navigator.pushNamed(context, '/stack');
+                    },
+                  ),
+                  Button(
+                    title: "Queue",
+                  ),
                 ],
               )
             ],
@@ -31,8 +38,9 @@ class Home extends StatelessWidget {
 
 class Button extends StatefulWidget {
   final String title;
+  final VoidCallback callback;
 
-  Button({this.title});
+  Button({this.title, this.callback});
 
   @override
   _ButtonState createState() => _ButtonState();
@@ -57,10 +65,11 @@ class _ButtonState extends State<Button> {
             onPressed = false;
           });
         },
+        onTap: widget.callback,
 
         child: Container(
-          width: 100,
-          height: 100,
+          width: (MediaQuery.of(context).size.width > 700)? 300: 150,
+          height: (MediaQuery.of(context).size.width > 700)? 300: 150,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(5.0)),
             border: Border.all(color: Colors.black, width: 1.0, style: BorderStyle.solid),

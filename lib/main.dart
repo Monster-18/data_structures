@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 //Home Page
 import 'package:data_structures/home.dart';
 
+//Data Structures
+import 'package:data_structures/data_structures/stack.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -22,6 +25,9 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => Home(),
+
+        //Data Structures
+        '/stack': (context) => StackDS(),
       },
 
     );
