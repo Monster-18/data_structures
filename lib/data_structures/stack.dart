@@ -179,7 +179,7 @@ class _StackImplementationState extends State<StackImplementation> {
             ),
 
             SizedBox(
-              height: 20,
+              height: 10,
             ),
 
             //Stack Operations
@@ -227,7 +227,7 @@ class _StackImplementationState extends State<StackImplementation> {
             ),
 
             SizedBox(
-              height: 20,
+              height: 40,
             ),
 
             //Info
@@ -308,10 +308,10 @@ class StackOperations{
 
 class StackInfo extends StatelessWidget {
 
-  List<String> list = [
-    'Green color denotes data in the top position',
-    'Push Button pushes data into the Stack',
-    'Pop Button pops out the data present in the top position from the Stack',
+  final List<String> list = [
+    'Green color denotes data in the "Top" position',
+    '"Push" pushes data into the Stack',
+    '"Pop" pops out data present in the Top position from the Stack',
     'Maximum size of this Stack is 6',
   ];
 
@@ -327,8 +327,6 @@ class StackInfo extends StatelessWidget {
               Flexible(
                 child: Text(
                   info,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontSize: 20.0
                   ),

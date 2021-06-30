@@ -24,6 +24,9 @@ class Home extends StatelessWidget {
                   ),
                   Button(
                     title: "Queue",
+                    callback: (){
+                      Navigator.pushNamed(context, '/queue');
+                    },
                   ),
                 ],
               )
