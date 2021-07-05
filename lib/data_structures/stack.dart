@@ -96,7 +96,7 @@ class _StackImplementationState extends State<StackImplementation> {
 
     FlatButton okButton = FlatButton(
       onPressed: (){
-        if(pushEleController.text.isEmpty || pushEleController.text.length > 10){
+        if(pushEleController.text.trim().isEmpty || pushEleController.text.trim().length > 10){
           pushEleController.clear();
         }else{
           Navigator.pop(context);
@@ -190,7 +190,7 @@ class _StackImplementationState extends State<StackImplementation> {
                     onPressed: () async{
                       await alertBoxForPushingData(context);
                       if(pushEleController.text.isNotEmpty){
-                        String pushedData = pushEleController.text;
+                        String pushedData = pushEleController.text.trim();
                         bool flag = _stack.push(pushedData);
                         pushEleController.clear();
                         if(!flag){

@@ -29,6 +29,20 @@ class Home extends StatelessWidget {
                     },
                   ),
                 ],
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Button(
+                    title: "Linked List",
+                    callback: (){
+                      Navigator.pushNamed(context, '/linkedList');
+                    },
+                  ),
+                ],
               )
             ],
           ),

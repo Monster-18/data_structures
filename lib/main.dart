@@ -6,6 +6,7 @@ import 'package:data_structures/home.dart';
 //Data Structures
 import 'package:data_structures/data_structures/stack.dart';
 import 'package:data_structures/data_structures/queue.dart';
+import 'package:data_structures/data_structures/linked_list.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         //Data Structures
         '/stack': (context) => StackDS(),
         '/queue': (context) => QueueDS(),
+        '/linkedList': (context) => LinkedListDS()
       },
 
     );
