@@ -10,6 +10,7 @@ class _LinkedListDSState extends State<LinkedListDS> {
 
   @override
   void initState() {
+    //Creating Object for the LinkedListOperations Class
     _listOperations = new LinkedListOperations();
     super.initState();
   }
@@ -56,13 +57,14 @@ class _LinkedListDSState extends State<LinkedListDS> {
   }
 }
 
+
 class LinkedListImplementation extends StatefulWidget {
   @override
   _LinkedListImplementationState createState() => _LinkedListImplementationState();
 }
 
 class _LinkedListImplementationState extends State<LinkedListImplementation> {
-  // LinkedListOperations _listOperations = new LinkedListOperations();
+  //Storing the reference of the object created in the _LinkedListDSState Class
   LinkedListOperations _listOperations = _LinkedListDSState._listOperations;
 
   TextEditingController deleteDataController = new TextEditingController();
@@ -75,7 +77,7 @@ class _LinkedListImplementationState extends State<LinkedListImplementation> {
   bool info = false;
   String infoText;
 
-  bool done = false;    //For finding whether the "OK" Button is clicked or not in Delete alert box
+  bool done = false;    //For finding whether the "Delete" Button is clicked or not in Delete alert box
 
   Future<void> alertBoxForInsertingData(BuildContext context){
     return showDialog(
@@ -88,7 +90,8 @@ class _LinkedListImplementationState extends State<LinkedListImplementation> {
   }
 
   Future<void> alertBoxForDeletingData(BuildContext context){
-    FlatButton okButton = new FlatButton(
+    //Delete Button
+    FlatButton deleteButton = new FlatButton(
       onPressed: (){
         if(deleteDataController.text.isEmpty || deleteDataController.text.length > 3){
           deleteDataController.clear();
@@ -97,9 +100,10 @@ class _LinkedListImplementationState extends State<LinkedListImplementation> {
           Navigator.pop(context);
         }
       },
-      child: Text('OK'),
+      child: Text('DELETE'),
     );
 
+    //Text Field for getting the data to be deleted
     TextField text = new TextField(
       controller: deleteDataController,
       decoration: InputDecoration(
@@ -113,13 +117,13 @@ class _LinkedListImplementationState extends State<LinkedListImplementation> {
       title: Text('Delete Data'),
       content: text,
       actions: [
-        okButton
+        deleteButton
       ],
     );
 
     return showDialog(
       barrierDismissible: false,
-        context: context,
+      context: context,
       builder: (context){
           return alert;
       }
@@ -233,157 +237,6 @@ class _LinkedListImplementationState extends State<LinkedListImplementation> {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: listBody()
-                    // [
-                    //   Container(
-                    //     width: 100,
-                    //     height: 50,
-                    //     color: Colors.red,
-                    //     child: Row(
-                    //       children: [
-                    //         Expanded(
-                    //           flex: 2,
-                    //           child: Container(
-                    //             height: 50,
-                    //             decoration: BoxDecoration(
-                    //               border: Border.all(color: Colors.black, width: 1.0, style: BorderStyle.solid)
-                    //             ),
-                    //             child: Center(child: Text('1')),
-                    //           )
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //
-                    //             child: Container(
-                    //               height: 50,
-                    //                 decoration: BoxDecoration(
-                    //                     border: Border.all(color: Colors.black, width: 1.0, style: BorderStyle.solid)
-                    //                 ),
-                    //                 child: Text(''))
-                    //         )
-                    //       ],
-                    //     ),
-                    //   ),
-                    //   Icon(
-                    //       Icons.arrow_forward,
-                    //     size: 20.0,
-                    //   ),
-                    //   Container(
-                    //     width: 100,
-                    //     height: 50,
-                    //     color: Colors.red,
-                    //     child: Row(
-                    //       children: [
-                    //         Expanded(
-                    //             flex: 2,
-                    //             child: Container(
-                    //               height: 50,
-                    //               decoration: BoxDecoration(
-                    //                   border: Border.all(color: Colors.black, width: 1.0, style: BorderStyle.solid)
-                    //               ),
-                    //               child: Center(child: Text('1')),
-                    //             )
-                    //         ),
-                    //         Expanded(
-                    //             flex: 1,
-                    //
-                    //             child: Container(
-                    //                 height: 50,
-                    //                 decoration: BoxDecoration(
-                    //                     border: Border.all(color: Colors.black, width: 1.0, style: BorderStyle.solid)
-                    //                 ),
-                    //                 child: Text(''))
-                    //         )
-                    //       ],
-                    //     ),
-                    //   ),
-                    //   Container(
-                    //     width: 100,
-                    //     height: 50,
-                    //     color: Colors.red,
-                    //     child: Row(
-                    //       children: [
-                    //         Expanded(
-                    //             flex: 2,
-                    //             child: Container(
-                    //               height: 50,
-                    //               decoration: BoxDecoration(
-                    //                   border: Border.all(color: Colors.black, width: 1.0, style: BorderStyle.solid)
-                    //               ),
-                    //               child: Center(child: Text('1')),
-                    //             )
-                    //         ),
-                    //         Expanded(
-                    //             flex: 1,
-                    //
-                    //             child: Container(
-                    //                 height: 50,
-                    //                 decoration: BoxDecoration(
-                    //                     border: Border.all(color: Colors.black, width: 1.0, style: BorderStyle.solid)
-                    //                 ),
-                    //                 child: Text(''))
-                    //         )
-                    //       ],
-                    //     ),
-                    //   ),
-                    //   Container(
-                    //     width: 100,
-                    //     height: 50,
-                    //     color: Colors.red,
-                    //     child: Row(
-                    //       children: [
-                    //         Expanded(
-                    //             flex: 2,
-                    //             child: Container(
-                    //               height: 50,
-                    //               decoration: BoxDecoration(
-                    //                   border: Border.all(color: Colors.black, width: 1.0, style: BorderStyle.solid)
-                    //               ),
-                    //               child: Center(child: Text('1')),
-                    //             )
-                    //         ),
-                    //         Expanded(
-                    //             flex: 1,
-                    //
-                    //             child: Container(
-                    //                 height: 50,
-                    //                 decoration: BoxDecoration(
-                    //                     border: Border.all(color: Colors.black, width: 1.0, style: BorderStyle.solid)
-                    //                 ),
-                    //                 child: Text(''))
-                    //         )
-                    //       ],
-                    //     ),
-                    //   ),
-                    //   Container(
-                    //     width: 100,
-                    //     height: 50,
-                    //     color: Colors.red,
-                    //     child: Row(
-                    //       children: [
-                    //         Expanded(
-                    //             flex: 2,
-                    //             child: Container(
-                    //               height: 50,
-                    //               decoration: BoxDecoration(
-                    //                   border: Border.all(color: Colors.black, width: 1.0, style: BorderStyle.solid)
-                    //               ),
-                    //               child: Center(child: Text('1')),
-                    //             )
-                    //         ),
-                    //         Expanded(
-                    //             flex: 1,
-                    //
-                    //             child: Container(
-                    //                 height: 50,
-                    //                 decoration: BoxDecoration(
-                    //                     border: Border.all(color: Colors.black, width: 1.0, style: BorderStyle.solid)
-                    //                 ),
-                    //                 child: Text(''))
-                    //         )
-                    //       ],
-                    //     ),
-                    //   ),
-                    // ],
                   ),
                 ),
               ),
@@ -393,20 +246,15 @@ class _LinkedListImplementationState extends State<LinkedListImplementation> {
               height: 10,
             ),
 
-            //Stack Operations
+            //List Operations
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 RaisedButton(
                   onPressed: () async{
-                    // _listOperations.insert("1");
-                    // setState(() {
-                    //
-                    // });
                     await alertBoxForInsertingData(context);
-                    // print(_AlertBoxForInsertingState.insertDataController.text);
-                    // await alertBoxForPushingData(context);
-                    if(_AlertBoxForInsertingState.done){
+
+                    if(_AlertBoxForInsertingState.done){    //For checking whether the "Insert" Button is clicked
                       _AlertBoxForInsertingState.done = false;  //Changing to default
                       if(_AlertBoxForInsertingState.isAfter){
                         bool inserted = _listOperations.insertAfter(_AlertBoxForInsertingState.insertDataController.text, _AlertBoxForInsertingState.insertDataAfterController.text);
@@ -431,34 +279,14 @@ class _LinkedListImplementationState extends State<LinkedListImplementation> {
                     }else{
                       changeToDefault();
                     }
-
-                    // if(pushEleController.text.isNotEmpty){
-                    //   String pushedData = pushEleController.text.trim();
-                    //   bool flag = _stack.push(pushedData);
-                    //   pushEleController.clear();
-                    //   if(!flag){
-                    //     info = false;
-                    //     error = true;
-                    //     errorText = "Stack Overflow";
-                    //   }else{
-                    //     error = false;
-                    //     info = true;
-                    //     infoText = "Pushed $pushedData";
-                    //   }
-                    //   setState(() {});
-                    // }
                   },
                   child: Text('Insert'),
                 ),
                 RaisedButton(
                   onPressed: () async{
-                    // _listOperations.delete("1");
-                    // // _listOperations.insertAfter("2", "1");
-                    // setState(() {
-                    //
-                    // });
                     await alertBoxForDeletingData(context);
-                    if(done){
+
+                    if(done){   //For checking whether the "Delete" Button is clicked
                       done = false;   //Changing to Default
                       bool deleted = _listOperations.delete(deleteDataController.text);
                       if(deleted){
@@ -475,18 +303,6 @@ class _LinkedListImplementationState extends State<LinkedListImplementation> {
                     }else{
                       deleteDataController.clear();
                     }
-
-                    // String data = _stack.pop();
-                    // if(data == null){
-                    //   info = false;
-                    //   error = true;
-                    //   errorText = "Stack Underflow";
-                    // }else{
-                    //   error = false;
-                    //   info = true;
-                    //   infoText = "Poped $data";
-                    // }
-                    // setState(() {});
                   },
                   child: Text('Delete'),
                 ),
@@ -546,6 +362,7 @@ class _LinkedListImplementationState extends State<LinkedListImplementation> {
   }
 }
 
+
 class AlertBoxForInserting extends StatefulWidget {
   @override
   _AlertBoxForInsertingState createState() => _AlertBoxForInsertingState();
@@ -581,6 +398,13 @@ class _AlertBoxForInsertingState extends State<AlertBoxForInserting> {
     keyboardType: TextInputType.number,
   );
 
+  //Changing to default
+  void changeToDefault(){
+    _AlertBoxForInsertingState.insertDataController.clear();
+    _AlertBoxForInsertingState.insertDataAfterController.clear();
+    _AlertBoxForInsertingState.isAfter = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -601,9 +425,7 @@ class _AlertBoxForInsertingState extends State<AlertBoxForInserting> {
                       groupValue: isAfter,
                       onChanged: (bool value){
                         isAfter = value;
-                        setState(() {
-
-                        });
+                        setState(() {});
                       },
                     ),
                     Text('Insert At End'),
@@ -616,9 +438,7 @@ class _AlertBoxForInsertingState extends State<AlertBoxForInserting> {
                       groupValue: isAfter,
                       onChanged: (bool value){
                         isAfter = value;
-                        setState(() {
-
-                        });
+                        setState(() {});
                       },
                     ),
                     Text('Insert After'),
@@ -634,23 +454,17 @@ class _AlertBoxForInsertingState extends State<AlertBoxForInserting> {
         FlatButton(
           onPressed: (){
             if(_AlertBoxForInsertingState.insertDataController.text.isEmpty || (_AlertBoxForInsertingState.isAfter && _AlertBoxForInsertingState.insertDataAfterController.text.isEmpty)){
-              //Changing to default
-              _AlertBoxForInsertingState.insertDataController.clear();
-              _AlertBoxForInsertingState.insertDataAfterController.clear();
-              _AlertBoxForInsertingState.isAfter = false;
+              changeToDefault();
               setState(() {});
             }else if(_AlertBoxForInsertingState.insertDataController.text.length > 3 || (_AlertBoxForInsertingState.isAfter && _AlertBoxForInsertingState.insertDataAfterController.text.length > 3)) {
-              //Changing to default
-              _AlertBoxForInsertingState.insertDataController.clear();
-              _AlertBoxForInsertingState.insertDataAfterController.clear();
-              _AlertBoxForInsertingState.isAfter = false;
+              changeToDefault();
               setState(() {});
             }else{
               _AlertBoxForInsertingState.done = true;
               Navigator.pop(context);
             }
           },
-          child: Text('OK'),
+          child: Text('INSERT'),
         )
       ],
     );
@@ -732,6 +546,7 @@ class LinkedListInfo extends StatelessWidget {
     return l;
   }
 
+  //For Displaying sample Node
   Widget displayNode(){
     return Center(
       child: Padding(
@@ -786,19 +601,21 @@ class LinkedListInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            displayNode(),
-            SizedBox(
-              height: 20.0,
-            ),
-            Column(
-              children: infoWidget(),
-            )
-          ],
+    return SingleChildScrollView(
+      child: Container(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              displayNode(),
+              SizedBox(
+                height: 20.0,
+              ),
+              Column(
+                children: infoWidget(),
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
 
-class StackDS extends StatelessWidget {
+class StackDS extends StatefulWidget {
+  @override
+  _StackDSState createState() => _StackDSState();
+}
+
+class _StackDSState extends State<StackDS> {
+  static StackOperations _stack;
+
+  @override
+  void initState() {
+    //Creating Object for class StackOperations
+    _stack = new StackOperations();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -49,8 +63,8 @@ class StackImplementation extends StatefulWidget {
 }
 
 class _StackImplementationState extends State<StackImplementation> {
-  //Creating Object for class StackOperations
-  StackOperations _stack = new StackOperations();
+  //Storing the reference of the object created in the _StackDSState Class
+  StackOperations _stack = _StackDSState._stack;
 
   TextEditingController pushEleController = new TextEditingController();
 
@@ -94,7 +108,7 @@ class _StackImplementationState extends State<StackImplementation> {
   //Alert box for getting element to be pushed
   Future<void> alertBoxForPushingData(BuildContext context){
 
-    FlatButton okButton = FlatButton(
+    FlatButton pushButton = FlatButton(
       onPressed: (){
         if(pushEleController.text.trim().isEmpty || pushEleController.text.trim().length > 10){
           pushEleController.clear();
@@ -102,7 +116,7 @@ class _StackImplementationState extends State<StackImplementation> {
           Navigator.pop(context);
         }
       },
-      child: Text("OK"),
+      child: Text("PUSH"),
     );
 
     TextField text = TextField(
@@ -117,7 +131,7 @@ class _StackImplementationState extends State<StackImplementation> {
       title: Text('Push Data'),
       content: text,
       actions: [
-        okButton
+        pushButton
       ],
     );
 
@@ -141,7 +155,6 @@ class _StackImplementationState extends State<StackImplementation> {
           children: [
             //Stack Container
             Container(
-              // color: Colors.red,
               width: MediaQuery.of(context).size.width,
               height: 400.0,
               child: Container(
@@ -155,22 +168,6 @@ class _StackImplementationState extends State<StackImplementation> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: stackBody(),
-                        // [
-                        //   Padding(
-                        //     padding: const EdgeInsets.all(2.0),
-                        //     child: Container(
-                        //       height: 30,
-                        //       color: Colors.red,
-                        //     ),
-                        //   ),
-                        //   Padding(
-                        //     padding: const EdgeInsets.all(2.0),
-                        //     child: Container(
-                        //       height: 30,
-                        //       color: Colors.green,
-                        //     ),
-                        //   ),
-                        // ],
                       ),
                     ),
                   ),
@@ -189,6 +186,7 @@ class _StackImplementationState extends State<StackImplementation> {
                 RaisedButton(
                     onPressed: () async{
                       await alertBoxForPushingData(context);
+
                       if(pushEleController.text.isNotEmpty){
                         String pushedData = pushEleController.text.trim();
                         bool flag = _stack.push(pushedData);
@@ -262,7 +260,7 @@ class _StackImplementationState extends State<StackImplementation> {
                                 fontSize: 20.0
                             ),
                           ):
-                          Text('Empty Stack'),
+                          Text(''),
                     ),
                   ),
                 ),
@@ -349,11 +347,13 @@ class StackInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Column(
-          children: infoWidget(),
+    return SingleChildScrollView(
+      child: Container(
+        child: Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Column(
+            children: infoWidget(),
+          ),
         ),
       ),
     );

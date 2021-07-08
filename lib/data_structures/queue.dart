@@ -1,6 +1,26 @@
 import 'package:flutter/material.dart';
 
-class QueueDS extends StatelessWidget {
+class QueueDS extends StatefulWidget {
+  @override
+  _QueueDSState createState() => _QueueDSState();
+}
+
+class _QueueDSState extends State<QueueDS> {
+  static QueueOperations _queue;
+
+  @override
+  void initState() {
+    //Creating Object for QueueOperations Class
+    _queue = new QueueOperations();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _queue = null;
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -43,14 +63,16 @@ class QueueDS extends StatelessWidget {
   }
 }
 
+
+
 class QueueImplementation extends StatefulWidget {
   @override
   _QueueImplementationState createState() => _QueueImplementationState();
 }
 
 class _QueueImplementationState extends State<QueueImplementation> {
-  //Creating Object for QueueOperations Class
-  QueueOperations _queue = new QueueOperations();
+  //Storing the reference of the object created in the _QueueDSState Class
+  QueueOperations _queue = _QueueDSState._queue;
 
   TextEditingController enqueueController = new TextEditingController();
 
@@ -133,7 +155,7 @@ class _QueueImplementationState extends State<QueueImplementation> {
   //Alert box for getting elements to be entered in the queue
   Future<void> alertBoxForEnqueueData(BuildContext context){
 
-    FlatButton okButton = FlatButton(
+    FlatButton enqueueButton = FlatButton(
       onPressed: (){
         if(enqueueController.text.trim().isEmpty || enqueueController.text.trim().length > 10){
           enqueueController.clear();
@@ -141,7 +163,7 @@ class _QueueImplementationState extends State<QueueImplementation> {
           Navigator.pop(context);
         }
       },
-      child: Text("OK"),
+      child: Text("ENQUEUE"),
     );
 
     TextField text = TextField(
@@ -156,7 +178,7 @@ class _QueueImplementationState extends State<QueueImplementation> {
       title: Text('Enqueue Data'),
       content: text,
       actions: [
-        okButton
+        enqueueButton
       ],
     );
 
@@ -179,7 +201,6 @@ class _QueueImplementationState extends State<QueueImplementation> {
           children: [
             //Queue Container
             Container(
-              // color: Colors.red,
               width: MediaQuery.of(context).size.width,
               height: 400.0,
               child: Container(
@@ -193,30 +214,6 @@ class _QueueImplementationState extends State<QueueImplementation> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: queueBody(),
-                        // [
-                        //   Padding(
-                        //     padding: const EdgeInsets.all(2.0),
-                        //     child: Container(
-                        //       width: 30,
-                        //       color: Colors.red,
-                        //       child: Center(
-                        //         child: RotatedBox(
-                        //           quarterTurns: 3,
-                        //           child: Text(
-                        //             'Hello kkkk bbbbbbb',
-                        //           ),
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ),
-                        //   Padding(
-                        //     padding: const EdgeInsets.all(2.0),
-                        //     child: Container(
-                        //       width: 30,
-                        //       color: Colors.green,
-                        //     ),
-                        //   ),
-                        // ],
                       ),
                     ),
                   ),
@@ -235,6 +232,7 @@ class _QueueImplementationState extends State<QueueImplementation> {
                 RaisedButton(
                   onPressed: () async{
                     await alertBoxForEnqueueData(context);
+
                     if(enqueueController.text.isNotEmpty){
                       String data = enqueueController.text.trim();
                       bool flag = _queue.enqueue(data);
@@ -301,8 +299,7 @@ class _QueueImplementationState extends State<QueueImplementation> {
                 decoration: BoxDecoration(
                     border: Border.all(
                         color:
-                        (error)? Colors.red: (info)? Colors.blue:
-                        Colors.black,
+                        (error)? Colors.red: (info)? Colors.blue: Colors.black,
                         width: 2.0,
                         style: BorderStyle.solid
                     ),
@@ -327,7 +324,7 @@ class _QueueImplementationState extends State<QueueImplementation> {
                                 fontSize: 20.0
                             ),
                           ):
-                        Text('Empty Queue'),
+                        Text(''),
                     ),
                   ),
                 ),
@@ -344,11 +341,14 @@ class _QueueImplementationState extends State<QueueImplementation> {
   }
 }
 
+
+
 class QueueOperations{
   List<String> list = [];
 
+  //Data enters the Queue
   bool enqueue(String data){
-    if(list.length > 5){
+    if(list.length > 5){    //Condition for checking Queue is full or not
       return false;
     }
 
@@ -356,8 +356,9 @@ class QueueOperations{
     return true;
   }
 
+  //Data leaves the Queue
   String dequeue(){
-    if(list.length > 0){
+    if(list.length > 0){    //Condition for checking Queue is empty or not
       return list.removeAt(0);
     }
 
@@ -414,11 +415,13 @@ class QueueInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Column(
-          children: infoWidget(),
+    return SingleChildScrollView(
+      child: Container(
+        child: Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Column(
+            children: infoWidget(),
+          ),
         ),
       ),
     );
