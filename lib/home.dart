@@ -7,44 +7,58 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text('Data Structures'),
         centerTitle: true,
+        backgroundColor: Colors.green,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Container(
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Button(
-                    title: "Stack",
-                    callback: (){
-                      Navigator.pushNamed(context, '/stack');
-                    },
-                  ),
-                  Button(
-                    title: "Queue",
-                    callback: (){
-                      Navigator.pushNamed(context, '/queue');
-                    },
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Button(
-                    title: "Linked List",
-                    callback: (){
-                      Navigator.pushNamed(context, '/linkedList');
-                    },
-                  ),
-                ],
-              )
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.lightBlueAccent,
+              // Color(0xFF7F7F),
+              Colors.lightGreenAccent
             ],
+          )
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Container(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Button(
+                      title: "Stack",
+                      callback: (){
+                        Navigator.pushNamed(context, '/stack');
+                      },
+                    ),
+                    Button(
+                      title: "Queue",
+                      callback: (){
+                        Navigator.pushNamed(context, '/queue');
+                      },
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Button(
+                      title: "Linked List",
+                      callback: (){
+                        Navigator.pushNamed(context, '/linkedList');
+                      },
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -88,17 +102,18 @@ class _ButtonState extends State<Button> {
           width: (MediaQuery.of(context).size.width > 700)? 300: 150,
           height: (MediaQuery.of(context).size.width > 700)? 300: 150,
           decoration: BoxDecoration(
+            color: Colors.pinkAccent[100],
             borderRadius: BorderRadius.all(Radius.circular(5.0)),
-            border: Border.all(color: Colors.black, width: 1.0, style: BorderStyle.solid),
+            // border: Border.all(color: Colors.black, width: 1.0, style: BorderStyle.solid),
             boxShadow: [
               //Background Shadow
               BoxShadow(
                 offset: (onPressed)? Offset(0.0, 0.0): Offset(3.0, 3.0),
-                color: Colors.grey,
+                color: Colors.blueGrey,
               ),
               BoxShadow(
                 offset: (onPressed)? Offset(3.0, 3.0): Offset(0.0, 0.0),
-                color: Colors.white
+                color: Colors.pinkAccent[100]
               )
             ]
           ),
