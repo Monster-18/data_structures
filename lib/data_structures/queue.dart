@@ -195,7 +195,17 @@ class _QueueImplementationState extends State<QueueImplementation> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        color: Colors.white70,
+        // color: Colors.white70,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.lightBlueAccent,
+                Colors.lightGreenAccent
+              ],
+            )
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -208,7 +218,21 @@ class _QueueImplementationState extends State<QueueImplementation> {
                   child: Container(
                     width: 230,
                     height: 160,
-                    color: Colors.yellow,
+                    // color: Colors.yellow,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                            color: Colors.yellow,
+                            width: 3.0,
+                            style: BorderStyle.solid
+                        ),
+                        bottom: BorderSide(
+                            color: Colors.yellow,
+                            width: 3.0,
+                            style: BorderStyle.solid
+                        )
+                      )
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Row(
@@ -249,6 +273,7 @@ class _QueueImplementationState extends State<QueueImplementation> {
                       setState(() {});
                     }
                   },
+                  color: Colors.amber,
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Text(
@@ -273,6 +298,7 @@ class _QueueImplementationState extends State<QueueImplementation> {
                     }
                     setState(() {});
                   },
+                  color: Colors.amber,
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Text(
@@ -415,12 +441,24 @@ class QueueInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        child: Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Column(
-            children: infoWidget(),
+    return Container(
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.lightBlueAccent,
+              Colors.lightGreenAccent
+            ],
+          )
+      ),
+      child: SingleChildScrollView(
+        child: Container(
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Column(
+              children: infoWidget(),
+            ),
           ),
         ),
       ),

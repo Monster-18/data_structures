@@ -222,13 +222,23 @@ class _LinkedListImplementationState extends State<LinkedListImplementation> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        color: Colors.white70,
+        // color: Colors.white70,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.lightBlueAccent,
+                Colors.lightGreenAccent
+              ],
+            )
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             //Space for Implementation
             Container(
-              color: Colors.red,
+              // color: Colors.red,
               width: MediaQuery.of(context).size.width,
               height: 400.0,
               child: Container(
@@ -280,6 +290,7 @@ class _LinkedListImplementationState extends State<LinkedListImplementation> {
                       changeToDefault();
                     }
                   },
+                  color: Colors.amber,
                   child: Text('Insert'),
                 ),
                 RaisedButton(
@@ -304,6 +315,7 @@ class _LinkedListImplementationState extends State<LinkedListImplementation> {
                       deleteDataController.clear();
                     }
                   },
+                  color: Colors.amber,
                   child: Text('Delete'),
                 ),
               ],
@@ -601,20 +613,32 @@ class LinkedListInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              displayNode(),
-              SizedBox(
-                height: 20.0,
-              ),
-              Column(
-                children: infoWidget(),
-              )
+    return Container(
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.lightBlueAccent,
+              Colors.lightGreenAccent
             ],
+          )
+      ),
+      child: SingleChildScrollView(
+        child: Container(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                displayNode(),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Column(
+                  children: infoWidget(),
+                )
+              ],
+            ),
           ),
         ),
       ),

@@ -149,7 +149,17 @@ class _StackImplementationState extends State<StackImplementation> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        color: Colors.white70,
+        // color: Colors.white70,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.lightBlueAccent,
+                Colors.lightGreenAccent
+              ],
+            )
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -162,7 +172,26 @@ class _StackImplementationState extends State<StackImplementation> {
                   child: Container(
                     width: 180,
                     height: 250,
-                    color: Colors.yellow,
+                    // color: Colors.yellow,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        left: BorderSide(
+                          color: Colors.yellow,
+                          width: 3.0,
+                          style: BorderStyle.solid
+                        ),
+                        right: BorderSide(
+                            color: Colors.yellow,
+                            width: 3.0,
+                            style: BorderStyle.solid
+                        ),
+                        bottom: BorderSide(
+                            color: Colors.yellow,
+                            width: 3.0,
+                            style: BorderStyle.solid
+                        )
+                      )
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
@@ -203,6 +232,7 @@ class _StackImplementationState extends State<StackImplementation> {
                         setState(() {});
                       }
                     },
+                  color: Colors.amber,
                   child: Text('Push'),
                 ),
                 RaisedButton(
@@ -219,6 +249,7 @@ class _StackImplementationState extends State<StackImplementation> {
                     }
                     setState(() {});
                   },
+                  color: Colors.amber,
                   child: Text('Pop'),
                 ),
               ],
@@ -347,12 +378,24 @@ class StackInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        child: Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Column(
-            children: infoWidget(),
+    return Container(
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.lightBlueAccent,
+              Colors.lightGreenAccent
+            ],
+          )
+      ),
+      child: SingleChildScrollView(
+        child: Container(
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Column(
+              children: infoWidget(),
+            ),
           ),
         ),
       ),

@@ -7,7 +7,6 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text('Data Structures'),
         centerTitle: true,
-        backgroundColor: Colors.green,
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -16,7 +15,6 @@ class Home extends StatelessWidget {
             end: Alignment.bottomRight,
             colors: [
               Colors.lightBlueAccent,
-              // Color(0xFF7F7F),
               Colors.lightGreenAccent
             ],
           )
