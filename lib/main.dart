@@ -7,34 +7,29 @@ import 'package:data_structures/home.dart';
 import 'package:data_structures/data_structures/stack.dart';
 import 'package:data_structures/data_structures/queue.dart';
 import 'package:data_structures/data_structures/linked_list.dart';
+import 'package:data_structures/data_structures/bst.dart';
 
 void main() {
-  runApp(MyApp());
-}
+  runApp(
+      MaterialApp(
+        title: 'Data Structure',
+        theme: ThemeData(
+            primarySwatch: Colors.deepPurple,
+            appBarTheme: AppBarTheme(
+                color: Colors.green
+            )
+        ),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => Home(),
 
-// This widget is the root of your application.
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Data Structure',
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-        appBarTheme: AppBarTheme(color: Colors.green)
-      ),
-      // darkTheme: ThemeData.dark(),
-      // themeMode: ThemeMode.dark,
+          //Data Structures
+          '/stack': (context) => StackDS(),
+          '/queue': (context) => QueueDS(),
+          '/linkedList': (context) => LinkedListDS(),
+          '/bst': (context) => BSTDS()
+        },
 
-      initialRoute: '/',
-      routes: {
-        '/': (context) => Home(),
-
-        //Data Structures
-        '/stack': (context) => StackDS(),
-        '/queue': (context) => QueueDS(),
-        '/linkedList': (context) => LinkedListDS()
-      },
-
-    );
-  }
+      )
+  );
 }
