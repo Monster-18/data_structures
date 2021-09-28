@@ -1,5 +1,4 @@
-import 'dart:io';
-
+//Node of BST
 class BNode{
   int data;
   BNode left, right;
@@ -32,7 +31,6 @@ class BST{
     return temp;
   }
 
-
   bool insert(int n){
     if(list.contains(n)){
       return false;
@@ -44,6 +42,90 @@ class BST{
     inOrder(_root);
     print('');
 
+    return true;
+  }
+
+
+  //Returns inorder predecessor
+  BNode _inorderPredecessor(BNode temp){
+    if(temp.right == null){
+      return temp;
+    }
+
+    return _inorderPredecessor(temp.right);
+  }
+
+  //Delete node in BST
+  BNode _deleteNode(BNode temp, int n){
+    if(temp == null){
+      return null;
+    }
+
+    if(n < temp.data){
+      temp.left = _deleteNode(temp.left, n);
+    }else if(n > temp.data){
+      temp.right = _deleteNode(temp.right, n);
+    }else{
+      int count = 0;
+      if(temp.left != null){
+        count++;
+      }
+      if(temp.right != null){
+        count++;
+      }
+
+      switch(count){
+        case 0: return null;
+        case 1: if(temp.left != null) {
+          return temp.left;
+        }
+        return temp.right;
+        case 2:
+          BNode pre = _inorderPredecessor(temp.left);
+          int data = pre.data;
+          pre.data = temp.data;
+          temp.data = data;
+
+          BNode old = temp, t = temp.left;
+          if(t.data == n){
+            if(t.left == null){
+              old.left = null;
+            }else{
+              old.left = t.left;
+            }
+          }else {
+            old = t;
+            t = t.right;
+            while(true){
+              if(t.data == n){
+                if(t.left == null){
+                  old.right = null;
+                }else{
+                  old.right = t.left;
+                }
+                break;
+              }
+
+              old = t;
+              t = t.right;
+            }
+          }
+          return temp;
+      }
+    }
+
+    return temp;
+  }
+
+  bool delete(int n){
+    if(!list.contains(n)){
+      return false;
+    }
+
+    _deleteNode(_root, n);
+    list.remove(n);
+    inOrder(_root);
+    print('');
     return true;
   }
 

@@ -694,6 +694,16 @@ class _BSTImplementationState extends State<BSTImplementation> {
                     if(!bst.insert(35)){
                       print('Oops');
                     }
+                    if(!bst.insert(6)){
+                      print('Oops');
+                    }
+                    print('Delete');
+                    if(!bst.delete(10)){
+                      print('Oops');
+                    }
+                    if(!bst.delete(10)){
+                      print('Oops');
+                    }
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.amber),
