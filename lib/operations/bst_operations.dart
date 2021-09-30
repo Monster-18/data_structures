@@ -9,11 +9,14 @@ class BNode{
   }
 }
 
-class BST{
+class BSTOperations{
   BNode _root = null;
 
   //List of data in bst
   List<int> list = [];
+
+  //Return root
+  BNode get root => _root;
 
   //Insert node in BST
   BNode _insertNode(BNode temp, int n){
@@ -39,8 +42,8 @@ class BST{
     list.add(n);
     _root = _insertNode(_root, n);
 
-    inOrder(_root);
-    print('');
+    // inOrder(_root);
+    // print('');
 
     return true;
   }

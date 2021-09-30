@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:data_structures/implementation/bst_implementation.dart';
 import 'package:data_structures/info/bst_info.dart';
+import 'package:data_structures/operations/bst_operations.dart';
 
 class BSTDS extends StatefulWidget {
   @override
@@ -9,6 +10,14 @@ class BSTDS extends StatefulWidget {
 }
 
 class _BSTDSState extends State<BSTDS> {
+  BSTOperations bstOperations;
+
+  @override
+  void initState() {
+    bstOperations = new BSTOperations();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -42,7 +51,9 @@ class _BSTDSState extends State<BSTDS> {
           ),
           body: TabBarView(
             children: [
-              BSTImplementation(),
+              BSTImplementation(
+                bstOperations: bstOperations,
+              ),
               BSTInfo()
             ],
           ),
