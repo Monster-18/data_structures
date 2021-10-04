@@ -25,10 +25,68 @@ class _BSTImplementationState extends State<BSTImplementation> {
     * Fourth arrows -> left: 2.0, right: 0.4
   */
 
+  TextEditingController eleController = new TextEditingController();
+
+  //Display Errors
+  bool error = false;
+  String errorText;
+
+  //Display Info
+  bool info = false;
+  String infoText;
+
   @override
   void initState() {
     bstOperations = widget.bstOperations;
     super.initState();
+  }
+
+  //Alert box for inserting elements
+  Future<void> alertBox(BuildContext context, bool isInsert){
+
+    TextButton insertButton = TextButton(
+      onPressed: (){
+        if(eleController.text.trim().isEmpty || eleController.text.trim().length > 5){
+          eleController.clear();
+        }else{
+          Navigator.pop(context);
+        }
+      },
+      child: Text(
+        (isInsert)? "INSERT": "DELETE",
+        style: TextStyle(
+            color: Colors.blue
+        ),
+      ),
+    );
+
+    TextField text = TextField(
+      controller: eleController,
+      decoration: InputDecoration(
+          hintText: (isInsert)? 'Element to be inserted': 'Element to be deleted',
+          helperText: 'Limit: 1 to 5 digits',
+          helperStyle: TextStyle(
+              color: Colors.deepPurpleAccent
+          )
+      ),
+      keyboardType: TextInputType.number,
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: (isInsert)? Text('Insert Data'): Text('Delete Data'),
+      content: text,
+      actions: [
+        insertButton
+      ],
+    );
+
+    return showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context){
+          return alert;
+        }
+    );
   }
 
   @override
@@ -61,533 +119,6 @@ class _BSTImplementationState extends State<BSTImplementation> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: tree(bstOperations)
-                    // Column(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: [
-                    //     Row(
-                    //       mainAxisAlignment: MainAxisAlignment.center,
-                    //       children: [
-                    //         node('1')
-                    //       ],
-                    //     ),
-                    //
-                    //     //Arrows
-                    //     // Row(
-                    //     //   mainAxisAlignment: MainAxisAlignment.center,
-                    //     //   children: [
-                    //     //     SizedBox(
-                    //     //       width: 50,
-                    //     //       height: 40,
-                    //     //       child: Transform.rotate(
-                    //     //         angle: 2.3,
-                    //     //         child: Icon(
-                    //     //             Icons.arrow_forward
-                    //     //         ),
-                    //     //       ),
-                    //     //     ),
-                    //     //     SizedBox(width: 50),
-                    //     //     SizedBox(
-                    //     //       width: 50,
-                    //     //       height: 40,
-                    //     //       child: Transform.rotate(
-                    //     //         angle: 0.6,
-                    //     //         child: Icon(
-                    //     //             Icons.arrow_forward
-                    //     //         ),
-                    //     //       ),
-                    //     //     ),
-                    //     //   ],
-                    //     // ),
-                    //
-                    //     // Row(
-                    //     //   mainAxisAlignment: MainAxisAlignment.center,
-                    //     //   children: [
-                    //     //     node('2'),
-                    //     //     SizedBox(width: 100,),
-                    //     //     node('3')
-                    //     //   ],
-                    //     // ),
-                    //     Row(
-                    //       children: [
-                    //         expand(),
-                    //         leftArrow(),
-                    //         rightArrow(),
-                    //         expand()
-                    //       ],
-                    //     ),
-                    //
-                    //     Row(
-                    //       children: [
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('2'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('3'),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //
-                    //     // Row(
-                    //     //   mainAxisAlignment: MainAxisAlignment.center,
-                    //     //   children: [
-                    //     //     SizedBox(
-                    //     //       width: 50,
-                    //     //       height: 40,
-                    //     //       child: Transform.rotate(
-                    //     //         angle: 2,
-                    //     //         child: Icon(
-                    //     //             Icons.arrow_forward
-                    //     //         ),
-                    //     //       ),
-                    //     //     ),
-                    //     //     SizedBox(
-                    //     //       width: 50,
-                    //     //       height: 40,
-                    //     //       child: Transform.rotate(
-                    //     //         angle: 1.2,
-                    //     //         child: Icon(
-                    //     //             Icons.arrow_forward
-                    //     //         ),
-                    //     //       ),
-                    //     //     ),
-                    //     //     SizedBox(width: 100,),
-                    //     //     SizedBox(
-                    //     //       width: 50,
-                    //     //       height: 40,
-                    //     //       child: Transform.rotate(
-                    //     //         angle: 1.8,
-                    //     //         child: Icon(
-                    //     //             Icons.arrow_forward
-                    //     //         ),
-                    //     //       ),
-                    //     //     ),
-                    //     //     SizedBox(
-                    //     //       width: 50,
-                    //     //       height: 40,
-                    //     //       child: Transform.rotate(
-                    //     //         angle: 1,
-                    //     //         child: Icon(
-                    //     //             Icons.arrow_forward
-                    //     //         ),
-                    //     //       ),
-                    //     //     ),
-                    //     //   ],
-                    //     // ),
-                    //
-                    //     // Row(
-                    //     //   mainAxisAlignment: MainAxisAlignment.center,
-                    //     //   children: [
-                    //     //     node('4'),
-                    //     //     SizedBox(width: 50,),
-                    //     //     node('5'),
-                    //     //     SizedBox(width: 50,),
-                    //     //     node('6'),
-                    //     //     SizedBox(width: 50,),
-                    //     //     node('7'),
-                    //     //   ],
-                    //     // ),
-                    //
-                    //     Row(
-                    //       children: [
-                    //         expand(),
-                    //         leftArrow(),
-                    //         rightArrow(),
-                    //         expand(),
-                    //
-                    //         expand(),
-                    //         leftArrow(),
-                    //         rightArrow(),
-                    //         expand(),
-                    //       ],
-                    //     ),
-                    //
-                    //     Row(
-                    //       children: [
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('2'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('3'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('4'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('5'),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //
-                    //     Row(
-                    //       children: [
-                    //         expand(),
-                    //         leftArrow(),
-                    //         rightArrow(),
-                    //         expand(),
-                    //
-                    //         expand(),
-                    //         leftArrow(),
-                    //         rightArrow(),
-                    //         expand(),
-                    //
-                    //         expand(),
-                    //         leftArrow(),
-                    //         rightArrow(),
-                    //         expand(),
-                    //
-                    //         expand(),
-                    //         leftArrow(),
-                    //         rightArrow(),
-                    //         expand(),
-                    //       ],
-                    //     ),
-                    //
-                    //     Row(
-                    //       children: [
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('2'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('3'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('4'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('5'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('2'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('3'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('4'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('5'),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //
-                    //     Row(
-                    //       children: [
-                    //         expand(),
-                    //         leftArrow(),
-                    //         rightArrow(),
-                    //         expand(),
-                    //
-                    //         expand(),
-                    //         leftArrow(),
-                    //         rightArrow(),
-                    //         expand(),
-                    //
-                    //         expand(),
-                    //         leftArrow(),
-                    //         rightArrow(),
-                    //         expand(),
-                    //
-                    //         expand(),
-                    //         leftArrow(),
-                    //         rightArrow(),
-                    //         expand(),
-                    //
-                    //         expand(),
-                    //         leftArrow(),
-                    //         rightArrow(),
-                    //         expand(),
-                    //
-                    //         expand(),
-                    //         leftArrow(),
-                    //         rightArrow(),
-                    //         expand(),
-                    //
-                    //         expand(),
-                    //         leftArrow(),
-                    //         rightArrow(),
-                    //         expand(),
-                    //
-                    //         expand(),
-                    //         leftArrow(),
-                    //         rightArrow(),
-                    //         expand(),
-                    //       ],
-                    //     ),
-                    //
-                    //     Row(
-                    //       children: [
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('2'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('3'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('4'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('5'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('2'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('3'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('4'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('5'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('2'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('3'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('4'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('5'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('2'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('3'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('4'),
-                    //         ),
-                    //         Expanded(
-                    //           flex: 1,
-                    //           child: node('5'),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //
-                    //     // Container(
-                    //     //   height: 40,
-                    //     //   child: ListView(
-                    //     //     // mainAxisAlignment: MainAxisAlignment.center,
-                    //     //     scrollDirection: Axis.horizontal,
-                    //     //     children: [
-                    //     //       SizedBox(
-                    //     //         width: 50,
-                    //     //         height: 40,
-                    //     //         child: Transform.rotate(
-                    //     //           angle: 2,
-                    //     //           child: Icon(
-                    //     //               Icons.arrow_forward
-                    //     //           ),
-                    //     //         ),
-                    //     //       ),
-                    //     //       SizedBox(
-                    //     //         width: 50,
-                    //     //         height: 40,
-                    //     //         child: Transform.rotate(
-                    //     //           angle: 1.2,
-                    //     //           child: Icon(
-                    //     //               Icons.arrow_forward
-                    //     //           ),
-                    //     //         ),
-                    //     //       ),
-                    //     //       SizedBox(
-                    //     //         width: 50,
-                    //     //         height: 40,
-                    //     //         child: Transform.rotate(
-                    //     //           angle: 1.8,
-                    //     //           child: Icon(
-                    //     //               Icons.arrow_forward
-                    //     //           ),
-                    //     //         ),
-                    //     //       ),
-                    //     //       SizedBox(
-                    //     //         width: 50,
-                    //     //         height: 40,
-                    //     //         child: Transform.rotate(
-                    //     //           angle: 1,
-                    //     //           child: Icon(
-                    //     //               Icons.arrow_forward
-                    //     //           ),
-                    //     //         ),
-                    //     //       ),
-                    //     //       SizedBox(
-                    //     //         width: 50,
-                    //     //         height: 40,
-                    //     //         child: Transform.rotate(
-                    //     //           angle: 1.8,
-                    //     //           child: Icon(
-                    //     //               Icons.arrow_forward
-                    //     //           ),
-                    //     //         ),
-                    //     //       ),
-                    //     //       SizedBox(
-                    //     //         width: 50,
-                    //     //         height: 40,
-                    //     //         child: Transform.rotate(
-                    //     //           angle: 1,
-                    //     //           child: Icon(
-                    //     //               Icons.arrow_forward
-                    //     //           ),
-                    //     //         ),
-                    //     //       ),
-                    //     //       SizedBox(
-                    //     //         width: 50,
-                    //     //         height: 40,
-                    //     //         child: Transform.rotate(
-                    //     //           angle: 1.8,
-                    //     //           child: Icon(
-                    //     //               Icons.arrow_forward
-                    //     //           ),
-                    //     //         ),
-                    //     //       ),
-                    //     //       SizedBox(
-                    //     //         width: 50,
-                    //     //         height: 40,
-                    //     //         child: Transform.rotate(
-                    //     //           angle: 1,
-                    //     //           child: Icon(
-                    //     //               Icons.arrow_forward
-                    //     //           ),
-                    //     //         ),
-                    //     //       ),
-                    //     //     ],
-                    //     //   ),
-                    //     // ),
-                    //     //
-                    //     // Container(
-                    //     //   height: 60.0,
-                    //     //   child: ListView(
-                    //     //     // mainAxisAlignment: MainAxisAlignment.center,
-                    //     //     scrollDirection: Axis.horizontal,
-                    //     //     children: [
-                    //     //       Container(
-                    //     //         width: 50,
-                    //     //         height: 50,
-                    //     //         decoration: BoxDecoration(
-                    //     //           color: Colors.blue,
-                    //     //           borderRadius: BorderRadius.circular(50),
-                    //     //         ),
-                    //     //         child: Center(
-                    //     //           child: Text('2'),
-                    //     //         ),
-                    //     //       ),
-                    //     //       Container(
-                    //     //         width: 50,
-                    //     //         height: 50,
-                    //     //         decoration: BoxDecoration(
-                    //     //           color: Colors.blue,
-                    //     //           borderRadius: BorderRadius.circular(50),
-                    //     //         ),
-                    //     //         child: Center(
-                    //     //           child: Text('3'),
-                    //     //         ),
-                    //     //       ),
-                    //     //       Container(
-                    //     //         width: 50,
-                    //     //         height: 50,
-                    //     //         decoration: BoxDecoration(
-                    //     //           color: Colors.blue,
-                    //     //           borderRadius: BorderRadius.circular(50),
-                    //     //         ),
-                    //     //         child: Center(
-                    //     //           child: Text('2'),
-                    //     //         ),
-                    //     //       ),
-                    //     //       Container(
-                    //     //         width: 50,
-                    //     //         height: 50,
-                    //     //         decoration: BoxDecoration(
-                    //     //           color: Colors.blue,
-                    //     //           borderRadius: BorderRadius.circular(50),
-                    //     //         ),
-                    //     //         child: Center(
-                    //     //           child: Text('3'),
-                    //     //         ),
-                    //     //       ),
-                    //     //       Container(
-                    //     //         width: 50,
-                    //     //         height: 50,
-                    //     //         decoration: BoxDecoration(
-                    //     //           color: Colors.blue,
-                    //     //           borderRadius: BorderRadius.circular(50),
-                    //     //         ),
-                    //     //         child: Center(
-                    //     //           child: Text('2'),
-                    //     //         ),
-                    //     //       ),
-                    //     //       Container(
-                    //     //         width: 50,
-                    //     //         height: 50,
-                    //     //         decoration: BoxDecoration(
-                    //     //           color: Colors.blue,
-                    //     //           borderRadius: BorderRadius.circular(50),
-                    //     //         ),
-                    //     //         child: Center(
-                    //     //           child: Text('3'),
-                    //     //         ),
-                    //     //       ),
-                    //     //       Container(
-                    //     //         width: 50,
-                    //     //         height: 50,
-                    //     //         decoration: BoxDecoration(
-                    //     //           color: Colors.blue,
-                    //     //           borderRadius: BorderRadius.circular(50),
-                    //     //         ),
-                    //     //         child: Center(
-                    //     //           child: Text('2'),
-                    //     //         ),
-                    //     //       ),
-                    //     //       Container(
-                    //     //         width: 50,
-                    //     //         height: 50,
-                    //     //         decoration: BoxDecoration(
-                    //     //           color: Colors.blue,
-                    //     //           borderRadius: BorderRadius.circular(50),
-                    //     //         ),
-                    //     //         child: Center(
-                    //     //           child: Text('3'),
-                    //     //         ),
-                    //     //       ),
-                    //     //     ],
-                    //     //   ),
-                    //     // ),
-                    //
-                    //   ],
-                    // ),
                   ),
                 ),
               ),
@@ -603,54 +134,24 @@ class _BSTImplementationState extends State<BSTImplementation> {
               children: [
                 TextButton(
                   onPressed: () async{
-                    // await alertBoxForPushingData(context);
-                    //
-                    // if(pushEleController.text.isNotEmpty){
-                    //   String pushedData = pushEleController.text.trim();
-                    //   bool flag = _stack.push(pushedData);
-                    //   pushEleController.clear();
-                    //   if(!flag){
-                    //     info = false;
-                    //     error = true;
-                    //     errorText = "Stack Overflow";
-                    //   }else{
-                    //     error = false;
-                    //     info = true;
-                    //     infoText = "Pushed $pushedData";
-                    //   }
-                    //   setState(() {});
-                    // }
-                    if(!bstOperations.insert(10)){
-                      print('Oops');
-                    }
-                    if(!bstOperations.insert(5)){
-                      print('Oops');
-                    }
-                    if(!bstOperations.insert(7)){
-                      print('Oops');
-                    }
-                    if(!bstOperations.insert(25)){
-                      print('Oops');
-                    }
-                    if(!bstOperations.insert(10)){
-                      print('Oops');
-                    }
-                    if(!bstOperations.insert(35)){
-                      print('Oops');
-                    }
-                    if(!bstOperations.insert(6)){
-                      print('Oops');
-                    }
-                    setState(() {});
-                    // print('Delete');
-                    // if(!bstOperations.delete(10)){
-                    //   print('Oops');
-                    // }
-                    // if(!bstOperations.delete(10)){
-                    //   print('Oops');
-                    // }
+                    await alertBox(context, true);
 
-                    // tree();
+                    if(eleController.text.isNotEmpty){
+                      String insertionData = eleController.text.trim();
+                      int insertData = int.parse(insertionData);
+                      bool flag = bstOperations.insert(insertData);
+                      eleController.clear();
+                      if(!flag){
+                        info = false;
+                        error = true;
+                        errorText = "$insertionData already existed";
+                      }else{
+                        error = false;
+                        info = true;
+                        infoText = "Inserted $insertionData";
+                      }
+                      setState(() {});
+                    }
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.amber),
@@ -658,18 +159,25 @@ class _BSTImplementationState extends State<BSTImplementation> {
                   child: Text('Insert'),
                 ),
                 TextButton(
-                  onPressed: (){
-                    // String data = _stack.pop();
-                    // if(data == null){
-                    //   info = false;
-                    //   error = true;
-                    //   errorText = "Stack Underflow";
-                    // }else{
-                    //   error = false;
-                    //   info = true;
-                    //   infoText = "Poped $data";
-                    // }
-                    // setState(() {});
+                  onPressed: () async{
+                    await alertBox(context, false);
+
+                    if(eleController.text.isNotEmpty){
+                      String deletionData = eleController.text.trim();
+                      int deleteData = int.parse(deletionData);
+                      bool flag = bstOperations.delete(deleteData);
+                      eleController.clear();
+                      if(!flag){
+                        info = false;
+                        error = true;
+                        errorText = "$deletionData not exists";
+                      }else{
+                        error = false;
+                        info = true;
+                        infoText = "Deleted $deletionData";
+                      }
+                      setState(() {});
+                    }
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.amber),
@@ -691,8 +199,7 @@ class _BSTImplementationState extends State<BSTImplementation> {
                 height: 60.0,
                 decoration: BoxDecoration(
                     border: Border.all(
-                        color: //(error)? Colors.red: (info)? Colors.blue:
-                        Colors.black,
+                        color: (error)? Colors.red: (info)? Colors.blue: Colors.black,
                         width: 2.0,
                         style: BorderStyle.solid
                     ),
@@ -703,20 +210,20 @@ class _BSTImplementationState extends State<BSTImplementation> {
                   child: Container(
                     child: Center(
                       child:
-                      // (error)?
-                      // Text(
-                      //   errorText,
-                      //   style: TextStyle(
-                      //       fontSize: 20.0
-                      //   ),
-                      // ):
-                      // (info)?
-                      // Text(
-                      //   infoText,
-                      //   style: TextStyle(
-                      //       fontSize: 20.0
-                      //   ),
-                      // ):
+                      (error)?
+                      Text(
+                        errorText,
+                        style: TextStyle(
+                            fontSize: 20.0
+                        ),
+                      ):
+                      (info)?
+                      Text(
+                        infoText,
+                        style: TextStyle(
+                            fontSize: 20.0
+                        ),
+                      ):
                       Text(''),
                     ),
                   ),

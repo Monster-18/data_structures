@@ -43,7 +43,6 @@ class BSTOperations{
     _root = _insertNode(_root, n);
 
     // inOrder(_root);
-    // print('');
 
     return true;
   }
@@ -51,12 +50,93 @@ class BSTOperations{
 
   //Returns inorder predecessor
   BNode _inorderPredecessor(BNode temp){
+    if(temp == null){
+      return null;
+    }
     if(temp.right == null){
       return temp;
     }
 
     return _inorderPredecessor(temp.right);
   }
+
+  BNode _swapWithInorderPredecessor(BNode temp, n){
+    BNode pre = _inorderPredecessor(temp.left);
+    int data = pre.data;
+    pre.data = temp.data;
+    temp.data = data;
+
+    BNode old = temp, t = temp.left;
+    if(t.data == n){
+      if(t.left == null){
+        old.left = null;
+      }else{
+        old.left = t.left;
+      }
+    }else {
+      old = t;
+      t = t.right;
+      while(true){
+        if(t.data == n){
+          if(t.left == null){
+            old.right = null;
+          }else{
+            old.right = t.left;
+          }
+          break;
+        }
+
+        old = t;
+        t = t.right;
+      }
+    }
+    return temp;
+  }
+
+
+  //Returns inorder successor
+  BNode _inorderSuccessor(BNode temp){
+
+    if(temp.left == null){
+      return temp;
+    }
+
+    return _inorderSuccessor(temp.left);
+  }
+
+  BNode _swapWithInorderSuccessor(BNode temp, n){
+    BNode pre = _inorderSuccessor(temp.right);
+    int data = pre.data;
+    pre.data = temp.data;
+    temp.data = data;
+
+    BNode old = temp, t = temp.right;
+    if(t.data == n){
+      if(t.right == null){
+        old.right = null;
+      }else{
+        old.right = t.right;
+      }
+    }else {
+      old = t;
+      t = t.left;
+      while(true){
+        if(t.data == n){
+          if(t.right == null){
+            old.left = null;
+          }else{
+            old.left = t.right;
+          }
+          break;
+        }
+
+        old = t;
+        t = t.left;
+      }
+    }
+    return temp;
+  }
+
 
   //Delete node in BST
   BNode _deleteNode(BNode temp, int n){
@@ -80,40 +160,12 @@ class BSTOperations{
       switch(count){
         case 0: return null;
         case 1: if(temp.left != null) {
-          return temp.left;
+          return _swapWithInorderPredecessor(temp, n);
         }
-        return temp.right;
+
+        return _swapWithInorderSuccessor(temp, n);
         case 2:
-          BNode pre = _inorderPredecessor(temp.left);
-          int data = pre.data;
-          pre.data = temp.data;
-          temp.data = data;
-
-          BNode old = temp, t = temp.left;
-          if(t.data == n){
-            if(t.left == null){
-              old.left = null;
-            }else{
-              old.left = t.left;
-            }
-          }else {
-            old = t;
-            t = t.right;
-            while(true){
-              if(t.data == n){
-                if(t.left == null){
-                  old.right = null;
-                }else{
-                  old.right = t.left;
-                }
-                break;
-              }
-
-              old = t;
-              t = t.right;
-            }
-          }
-          return temp;
+          return _swapWithInorderPredecessor(temp, n);
       }
     }
 
@@ -125,12 +177,13 @@ class BSTOperations{
       return false;
     }
 
-    _deleteNode(_root, n);
+    _root = _deleteNode(_root, n);
     list.remove(n);
-    inOrder(_root);
-    print('');
+    // inOrder(_root);
+    // print('');
     return true;
   }
+
 
   //Inorder display
   void inOrder(BNode temp){
