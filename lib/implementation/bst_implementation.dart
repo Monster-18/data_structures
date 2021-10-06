@@ -139,17 +139,33 @@ class _BSTImplementationState extends State<BSTImplementation> {
                     if(eleController.text.isNotEmpty){
                       String insertionData = eleController.text.trim();
                       int insertData = int.parse(insertionData);
-                      bool flag = bstOperations.insert(insertData);
+                      int res = bstOperations.insert(insertData);
                       eleController.clear();
-                      if(!flag){
-                        info = false;
-                        error = true;
-                        errorText = "$insertionData already existed";
-                      }else{
-                        error = false;
-                        info = true;
-                        infoText = "Inserted $insertionData";
+                      switch(res){
+                        case 0:
+                          info = false;
+                          error = true;
+                          errorText = "$insertionData already existed";
+                          break;
+                        case 1:
+                          error = false;
+                          info = true;
+                          infoText = "Inserted $insertionData";
+                          break;
+                        case 2:
+                          error = false;
+                          info = true;
+                          infoText = "Exceeds Level 5";
                       }
+                      // if(!flag){
+                      //   info = false;
+                      //   error = true;
+                      //   errorText = "$insertionData already existed";
+                      // }else{
+                      //   error = false;
+                      //   info = true;
+                      //   infoText = "Inserted $insertionData";
+                      // }
                       setState(() {});
                     }
                   },

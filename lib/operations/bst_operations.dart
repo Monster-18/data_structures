@@ -14,37 +14,47 @@ class BSTOperations{
 
   //List of data in bst
   List<int> list = [];
+  bool inserted = true;
 
   //Return root
   BNode get root => _root;
 
   //Insert node in BST
-  BNode _insertNode(BNode temp, int n){
+  BNode _insertNode(BNode temp, int n, int height){
     if(temp == null){
-      BNode newnode = new BNode(n);
-      return newnode;
+      if(height < 6){ //Allows to insert node till 5th level
+        BNode newnode = new BNode(n);
+        return newnode;
+      }
+
+      inserted = false;
+      return temp;
     }
 
     if(n > temp.data){
-      temp.right = _insertNode(temp.right, n);
+      temp.right = _insertNode(temp.right, n, height+1);
     }else{
-      temp.left = _insertNode(temp.left, n);
+      temp.left = _insertNode(temp.left, n, height+1);
     }
 
     return temp;
   }
 
-  bool insert(int n){
+  int insert(int n){
     if(list.contains(n)){
-      return false;
+      return 0;
     }
 
     list.add(n);
-    _root = _insertNode(_root, n);
+    inserted = true;
+    _root = _insertNode(_root, n, 1);
 
+    if(inserted){
+      return 1;
+    }else{
+      return 2;
+    }
     // inOrder(_root);
-
-    return true;
   }
 
 
