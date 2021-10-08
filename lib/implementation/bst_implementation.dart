@@ -113,12 +113,25 @@ class _BSTImplementationState extends State<BSTImplementation> {
               child: Container(
                 color: Colors.red,
                 child: Zoom(
-                  maxZoomWidth: 1500,
-                  maxZoomHeight: 1500,
+                  maxZoomHeight: 1200,
+                  maxZoomWidth: 1200,
                   initZoom: 0,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: tree(bstOperations)
+                    child: Container(
+                      height: 1800,
+                      child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            Container(
+                              width: 1800,
+                              child: ListView(
+                                  children: tree(bstOperations)
+                              ),
+                            )
+                          ],
+                      ),
+                    )
                   ),
                 ),
               ),

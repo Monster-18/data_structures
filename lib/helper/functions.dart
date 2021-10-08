@@ -56,14 +56,20 @@ Widget node(String text){
     child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        width: 50,
-        height: 50,
+        width: 100,
+        height: 100,
         decoration: BoxDecoration(
           color: Colors.blue,
           borderRadius: BorderRadius.circular(50),
         ),
         child: Center(
-          child: Text(text),
+          child: Text(
+              text,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 30
+            ),
+          ),
         ),
       ),
     ),
@@ -78,7 +84,7 @@ Widget leftArrow(double angle){
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SizedBox(
-          width: 50,
+          width: 100,
           height: 50,
           child: Transform.rotate(
             angle: angle,
@@ -100,7 +106,7 @@ Widget rightArrow(double angle){
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SizedBox(
-          width: 50,
+          width: 100,
           height: 50,
           child: Transform.rotate(
             angle: angle,
@@ -123,12 +129,13 @@ Widget expand(){
 }
 
 //Tree
-Widget tree(BSTOperations bstOperations){
+List<Widget> tree(BSTOperations bstOperations){
   BNode root = bstOperations.root;
 
   //If tree is empty
   if(root == null){
-    return Container();
+    return [];
+    //return Container();
   }
 
   // print('Root: ${root.data}');
@@ -137,6 +144,8 @@ Widget tree(BSTOperations bstOperations){
   List<BNode> nextLevel = [];     //Next level nodes
 
   List<Widget> widgets = [];    //Total widgets of a tree
+
+  widgets.add(SizedBox(height: 50));
 
   //Root node
   widgets.add(
@@ -174,7 +183,7 @@ Widget tree(BSTOperations bstOperations){
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
-                    width: 50,
+                    width: 100,
                     height: 50,
                     child: Text(' '),
                   ),
@@ -189,7 +198,7 @@ Widget tree(BSTOperations bstOperations){
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
-                    width: 50,
+                    width: 100,
                     height: 50,
                     child: Text(' '),
                   ),
@@ -213,7 +222,7 @@ Widget tree(BSTOperations bstOperations){
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
-                      width: 50,
+                      width: 100,
                       height: 50,
                       child: Text(' '),
                     ),
@@ -238,7 +247,7 @@ Widget tree(BSTOperations bstOperations){
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
-                      width: 50,
+                      width: 100,
                       height: 50,
                       child: Text(' '),
                     ),
@@ -295,9 +304,10 @@ Widget tree(BSTOperations bstOperations){
     right_angle += 0.3;
   }
 
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: widgets,
-  );
+  return widgets;
+  // return Column(
+  //   mainAxisAlignment: MainAxisAlignment.center,
+  //   children: widgets,
+  // );
 
 }
