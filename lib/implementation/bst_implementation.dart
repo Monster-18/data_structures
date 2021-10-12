@@ -35,13 +35,15 @@ class _BSTImplementationState extends State<BSTImplementation> {
   bool info = false;
   String infoText;
 
+  bool isOkBtnClicked = false;
+
   @override
   void initState() {
     bstOperations = widget.bstOperations;
     super.initState();
   }
 
-  //Alert box for inserting elements
+  //Alert box for inserting & deleting elements
   Future<void> alertBox(BuildContext context, bool isInsert){
 
     TextButton insertButton = TextButton(
@@ -49,6 +51,7 @@ class _BSTImplementationState extends State<BSTImplementation> {
         if(eleController.text.trim().isEmpty || eleController.text.trim().length > 5){
           eleController.clear();
         }else{
+          isOkBtnClicked = true;
           Navigator.pop(context);
         }
       },
@@ -149,11 +152,10 @@ class _BSTImplementationState extends State<BSTImplementation> {
                   onPressed: () async{
                     await alertBox(context, true);
 
-                    if(eleController.text.isNotEmpty){
+                    if(isOkBtnClicked){
                       String insertionData = eleController.text.trim();
                       int insertData = int.parse(insertionData);
                       int res = bstOperations.insert(insertData);
-                      eleController.clear();
                       switch(res){
                         case 0:
                           info = false;
@@ -170,17 +172,10 @@ class _BSTImplementationState extends State<BSTImplementation> {
                           info = true;
                           infoText = "Exceeds Level 5";
                       }
-                      // if(!flag){
-                      //   info = false;
-                      //   error = true;
-                      //   errorText = "$insertionData already existed";
-                      // }else{
-                      //   error = false;
-                      //   info = true;
-                      //   infoText = "Inserted $insertionData";
-                      // }
+                      isOkBtnClicked = false;
                       setState(() {});
                     }
+                    eleController.clear();
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.amber),
@@ -191,11 +186,10 @@ class _BSTImplementationState extends State<BSTImplementation> {
                   onPressed: () async{
                     await alertBox(context, false);
 
-                    if(eleController.text.isNotEmpty){
+                    if(isOkBtnClicked){
                       String deletionData = eleController.text.trim();
                       int deleteData = int.parse(deletionData);
                       bool flag = bstOperations.delete(deleteData);
-                      eleController.clear();
                       if(!flag){
                         info = false;
                         error = true;
@@ -205,8 +199,10 @@ class _BSTImplementationState extends State<BSTImplementation> {
                         info = true;
                         infoText = "Deleted $deletionData";
                       }
+                      isOkBtnClicked = false;
                       setState(() {});
                     }
+                    eleController.clear();
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.amber),
