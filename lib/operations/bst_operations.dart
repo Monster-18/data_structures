@@ -45,11 +45,11 @@ class BSTOperations{
       return 0;
     }
 
-    list.add(n);
     inserted = true;
     _root = _insertNode(_root, n, 1);
 
     if(inserted){
+      list.add(n);
       return 1;
     }else{
       return 2;
@@ -59,49 +59,49 @@ class BSTOperations{
 
 
   //Returns inorder predecessor
-  BNode _inorderPredecessor(BNode temp){
-    if(temp == null){
-      return null;
-    }
-    if(temp.right == null){
-      return temp;
-    }
-
-    return _inorderPredecessor(temp.right);
-  }
-
-  BNode _swapWithInorderPredecessor(BNode temp, n){
-    BNode pre = _inorderPredecessor(temp.left);
-    int data = pre.data;
-    pre.data = temp.data;
-    temp.data = data;
-
-    BNode old = temp, t = temp.left;
-    if(t.data == n){
-      if(t.left == null){
-        old.left = null;
-      }else{
-        old.left = t.left;
-      }
-    }else {
-      old = t;
-      t = t.right;
-      while(true){
-        if(t.data == n){
-          if(t.left == null){
-            old.right = null;
-          }else{
-            old.right = t.left;
-          }
-          break;
-        }
-
-        old = t;
-        t = t.right;
-      }
-    }
-    return temp;
-  }
+  // BNode _inorderPredecessor(BNode temp){
+  //   if(temp == null){
+  //     return null;
+  //   }
+  //   if(temp.right == null){
+  //     return temp;
+  //   }
+  //
+  //   return _inorderPredecessor(temp.right);
+  // }
+  //
+  // BNode _swapWithInorderPredecessor(BNode temp, n){
+  //   BNode pre = _inorderPredecessor(temp.left);
+  //   int data = pre.data;
+  //   pre.data = temp.data;
+  //   temp.data = data;
+  //
+  //   BNode old = temp, t = temp.left;
+  //   if(t.data == n){
+  //     if(t.left == null){
+  //       old.left = null;
+  //     }else{
+  //       old.left = t.left;
+  //     }
+  //   }else {
+  //     old = t;
+  //     t = t.right;
+  //     while(true){
+  //       if(t.data == n){
+  //         if(t.left == null){
+  //           old.right = null;
+  //         }else{
+  //           old.right = t.left;
+  //         }
+  //         break;
+  //       }
+  //
+  //       old = t;
+  //       t = t.right;
+  //     }
+  //   }
+  //   return temp;
+  // }
 
 
   //Returns inorder successor
@@ -170,12 +170,12 @@ class BSTOperations{
       switch(count){
         case 0: return null;
         case 1: if(temp.left != null) {
-          return _swapWithInorderPredecessor(temp, n);
-        }
+            return temp.left;
+          }
 
-        return _swapWithInorderSuccessor(temp, n);
+          return temp.right;
         case 2:
-          return _swapWithInorderPredecessor(temp, n);
+          return _swapWithInorderSuccessor(temp, n);
       }
     }
 

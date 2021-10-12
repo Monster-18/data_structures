@@ -51,7 +51,7 @@ AppBar appBar(String title){
 //Binary Tree
 
 //Node of a tree
-Widget node(String text){
+Widget node(String text, bool isRoot){
   return Center(
     child: Padding(
       padding: const EdgeInsets.all(8.0),
@@ -59,7 +59,7 @@ Widget node(String text){
         width: 100,
         height: 100,
         decoration: BoxDecoration(
-          color: Colors.blue,
+          color: (isRoot)? Colors.teal: Colors.blue,
           borderRadius: BorderRadius.circular(50),
         ),
         child: Center(
@@ -152,7 +152,7 @@ List<Widget> tree(BSTOperations bstOperations){
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          node('${root.data}')
+          node('${root.data}', true)
         ],
       )
   );
@@ -283,7 +283,7 @@ List<Widget> tree(BSTOperations bstOperations){
         list.add(
             Expanded(
               flex: 1,
-              child: node('${ele.data}'),
+              child: node('${ele.data}', false),
             )
         );
       }

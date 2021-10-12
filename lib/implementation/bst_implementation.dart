@@ -96,16 +96,7 @@ class _BSTImplementationState extends State<BSTImplementation> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Colors.lightBlueAccent,
-                Colors.lightGreenAccent
-              ],
-            )
-        ),
+        decoration: boxDecoration(),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
