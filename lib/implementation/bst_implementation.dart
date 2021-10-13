@@ -145,24 +145,38 @@ class _BSTImplementationState extends State<BSTImplementation> {
 
                     if(isOkBtnClicked){
                       String insertionData = eleController.text.trim();
-                      int insertData = int.parse(insertionData);
-                      int res = bstOperations.insert(insertData);
-                      switch(res){
-                        case 0:
-                          info = false;
+                      try{
+                        int insertData = int.parse(insertionData);
+                        int res = bstOperations.insert(insertData);
+                        switch(res){
+                          case 0:
+                            info = false;
+                            error = true;
+                            errorText = "$insertionData already existed";
+                            break;
+                          case 1:
+                            error = false;
+                            info = true;
+                            infoText = "Inserted $insertionData";
+                            break;
+                          case 2:
+                            error = false;
+                            info = true;
+                            infoText = "Exceeds Level 5";
+                        }
+                      }catch(e){
+                        try{
+                          double.parse(insertionData);
+                          error = false;
+                          info = true;
+                          infoText = "Double is not supported";
+                        }catch(e){
                           error = true;
-                          errorText = "$insertionData already existed";
-                          break;
-                        case 1:
-                          error = false;
-                          info = true;
-                          infoText = "Inserted $insertionData";
-                          break;
-                        case 2:
-                          error = false;
-                          info = true;
-                          infoText = "Exceeds Level 5";
+                          info = false;
+                          errorText = "Invalid data";
+                        }
                       }
+
                       isOkBtnClicked = false;
                       setState(() {});
                     }
@@ -179,17 +193,31 @@ class _BSTImplementationState extends State<BSTImplementation> {
 
                     if(isOkBtnClicked){
                       String deletionData = eleController.text.trim();
-                      int deleteData = int.parse(deletionData);
-                      bool flag = bstOperations.delete(deleteData);
-                      if(!flag){
-                        info = false;
-                        error = true;
-                        errorText = "$deletionData not exists";
-                      }else{
-                        error = false;
-                        info = true;
-                        infoText = "Deleted $deletionData";
+                      try{
+                        int deleteData = int.parse(deletionData);
+                        bool flag = bstOperations.delete(deleteData);
+                        if(!flag){
+                          info = false;
+                          error = true;
+                          errorText = "$deletionData not exists";
+                        }else{
+                          error = false;
+                          info = true;
+                          infoText = "Deleted $deletionData";
+                        }
+                      }catch(e){
+                        try{
+                          double.parse(deletionData);
+                          error = false;
+                          info = true;
+                          infoText = "Double is not supported";
+                        }catch(e){
+                          error = true;
+                          info = false;
+                          errorText = "Invalid data";
+                        }
                       }
+
                       isOkBtnClicked = false;
                       setState(() {});
                     }
