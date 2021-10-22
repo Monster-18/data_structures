@@ -54,6 +54,17 @@ class Home extends StatelessWidget {
                       },
                     ),
                   ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Button(
+                      title: "AVL Tree",
+                      callback: (){
+                        Navigator.pushNamed(context, '/avl');
+                      },
+                    ),
+                  ],
                 )
               ],
             ),
