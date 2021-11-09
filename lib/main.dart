@@ -9,6 +9,7 @@ import 'package:data_structures/data_structures/queue.dart';
 import 'package:data_structures/data_structures/linked_list.dart';
 import 'package:data_structures/data_structures/bst.dart';
 import 'package:data_structures/data_structures/avl_tree.dart';
+import 'package:data_structures/data_structures/red_black_tree.dart';
 
 void main() {
   runApp(
@@ -30,6 +31,7 @@ void main() {
           '/linkedList': (context) => LinkedListDS(),
           '/bst': (context) => BSTDS(),
           '/avl': (context) => AVLDS(),
+          '/rb': (context) => RBDS()
         },
 
       )

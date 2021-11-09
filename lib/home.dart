@@ -64,6 +64,12 @@ class Home extends StatelessWidget {
                         Navigator.pushNamed(context, '/avl');
                       },
                     ),
+                    Button(
+                      title: "Red Black Tree",
+                      callback: (){
+                        Navigator.pushNamed(context, '/rb');
+                      },
+                    ),
                   ],
                 )
               ],
