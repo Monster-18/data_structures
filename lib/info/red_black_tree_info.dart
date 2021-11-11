@@ -6,7 +6,7 @@ class RBInfo extends StatelessWidget {
 
   final List<String> list = [
     'Left Node  <  Root Node  <  Right Node',
-    'AVL Tree is a kind of Self-Balancing Binary Search Tree',
+    'Red Black Tree is a kind of Self-Balancing Binary Search Tree',
     'Each node is either red or black',
     'The root is black [Optional]',
     'All NIL leaves are black',

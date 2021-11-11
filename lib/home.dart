@@ -17,18 +17,21 @@ class Home extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           child: Container(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Button(
-                      title: "Stack",
+                      title1: "Stack",
+                      title2: null,
                       callback: (){
                         Navigator.pushNamed(context, '/stack');
                       },
                     ),
                     Button(
-                      title: "Queue",
+                      title1: "Queue",
+                      title2: null,
                       callback: (){
                         Navigator.pushNamed(context, '/queue');
                       },
@@ -42,30 +45,37 @@ class Home extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Button(
-                      title: "Linked List",
+                      title1: "Linked List",
+                      title2: null,
                       callback: (){
                         Navigator.pushNamed(context, '/linkedList');
                       },
                     ),
                     Button(
-                      title: "BST",
+                      title1: "BST",
+                      title2: null,
                       callback: (){
                         Navigator.pushNamed(context, '/bst');
                       },
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: 20.0,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Button(
-                      title: "AVL Tree",
+                      title1: "AVL Tree",
+                      title2: null,
                       callback: (){
                         Navigator.pushNamed(context, '/avl');
                       },
                     ),
                     Button(
-                      title: "Red Black Tree",
+                      title1: "Red Black",
+                      title2: "Tree",
                       callback: (){
                         Navigator.pushNamed(context, '/rb');
                       },

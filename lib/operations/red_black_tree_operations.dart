@@ -112,7 +112,7 @@ class RBOperations{
     // Case 1: Parent is null, we've reached the root, the end of the recursion
     if (parent == null) {
       // Uncomment the following line if you want to enforce black roots (rule 2):
-      // node.color = BLACK;
+      node.color = false;
       return;
     }
 
@@ -288,7 +288,7 @@ class RBOperations{
   // Case 1: Examined node is root, end of recursion
   if (node == _root) {
   // Uncomment the following line if you want to enforce black roots (rule 2):
-  // node.color = BLACK;
+  node.color = false;
   return;
   }
 
