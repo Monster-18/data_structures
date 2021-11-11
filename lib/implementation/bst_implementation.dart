@@ -110,6 +110,7 @@ class _BSTImplementationState extends State<BSTImplementation> {
                   maxZoomHeight: 1200,
                   maxZoomWidth: 1200,
                   initZoom: 0,
+                  doubleTapZoom: false,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
