@@ -3,27 +3,21 @@ import 'package:flutter/material.dart';
 //Zoom
 import 'package:zoom_widget/zoom_widget.dart';
 
-import 'package:data_structures/operations/bst_operations.dart';
+import 'package:data_structures/operations/red_black_tree_operations.dart';
 
 import 'package:data_structures/helper/functions.dart';
 
-class BSTImplementation extends StatefulWidget {
-  BSTOperations bstOperations;
+class RBImplementation extends StatefulWidget {
+  RBOperations rbOperations;
 
-  BSTImplementation({this.bstOperations});
+  RBImplementation({this.rbOperations});
 
   @override
-  _BSTImplementationState createState() => _BSTImplementationState();
+  _RBImplementationState createState() => _RBImplementationState();
 }
 
-class _BSTImplementationState extends State<BSTImplementation> {
-  BSTOperations bstOperations;
-  /*
-    * First arrows -> left: 2.6, right: 0.4
-    * Second arrows -> left: 2.4, right: 0.7
-    * Third arrows -> left: 2.2, right: 1.0
-    * Fourth arrows -> left: 2.0, right: 0.4
-  */
+class _RBImplementationState extends State<RBImplementation> {
+  RBOperations rbOperations;
 
   TextEditingController eleController = new TextEditingController();
 
@@ -39,7 +33,7 @@ class _BSTImplementationState extends State<BSTImplementation> {
 
   @override
   void initState() {
-    bstOperations = widget.bstOperations;
+    rbOperations = widget.rbOperations;
     super.initState();
   }
 
@@ -100,7 +94,7 @@ class _BSTImplementationState extends State<BSTImplementation> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            //BST Container
+            //AVL Container
             Container(
               width: MediaQuery.of(context).size.width,
               height: 400.0,
@@ -112,21 +106,21 @@ class _BSTImplementationState extends State<BSTImplementation> {
                   initZoom: 0,
                   doubleTapZoom: false,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 1800,
-                      child: ListView(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 1800,
+                        child: ListView(
                           scrollDirection: Axis.horizontal,
                           children: [
                             Container(
                               width: 1800,
                               child: ListView(
-                                  children: tree(bstOperations)
+                                  children: rb_tree(rbOperations)
                               ),
                             )
                           ],
-                      ),
-                    )
+                        ),
+                      )
                   ),
                 ),
               ),
@@ -148,7 +142,8 @@ class _BSTImplementationState extends State<BSTImplementation> {
                       String insertionData = eleController.text.trim();
                       try{
                         int insertData = int.parse(insertionData);
-                        int res = bstOperations.insert(insertData);
+                        int res = rbOperations.insert(insertData);
+                        // rbOperations.insert(insertData);
                         switch(res){
                           case 0:
                             info = false;
@@ -196,7 +191,8 @@ class _BSTImplementationState extends State<BSTImplementation> {
                       String deletionData = eleController.text.trim();
                       try{
                         int deleteData = int.parse(deletionData);
-                        bool flag = bstOperations.delete(deleteData);
+                        bool flag = rbOperations.delete(deleteData);
+                        // rbOperations.deleteNode(deleteData);
                         if(!flag){
                           info = false;
                           error = true;

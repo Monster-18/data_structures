@@ -1,10 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Button extends StatefulWidget {
-  final String title;
+  final String title1, title2;
   final VoidCallback callback;
 
-  Button({this.title, this.callback});
+  Button({this.title1, this.title2, this.callback});
 
   @override
   _ButtonState createState() => _ButtonState();
@@ -49,14 +50,33 @@ class _ButtonState extends State<Button> {
                 )
               ]
           ),
-          child: Center(
-            child: Text(
-              '${widget.title}',
-              style: TextStyle(
-                  decoration: TextDecoration.none,
-                  fontSize: 26.0
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Text(
+                  '${widget.title1}',
+                  style: TextStyle(
+                      decoration: TextDecoration.none,
+                      fontSize: 26.0
+                  ),
+                ),
               ),
-            ),
+              (widget.title2 != null)?
+                  Center(
+                    child: Text(
+                      '${widget.title2}',
+                      style: TextStyle(
+                          decoration: TextDecoration.none,
+                          fontSize: 26.0
+                      ),
+                    ),
+                  ):
+                  Expanded(
+                    flex:0,
+                    child: Container(),
+                  ),
+            ],
           ),
         ),
       ),
