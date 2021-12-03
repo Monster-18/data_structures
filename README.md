@@ -1,6 +1,6 @@
 # data_structures
 
-A new Flutter application which helps us to understand about Data Structures.
+A new Flutter application which helps us understand Data Structures.
 
 ## Getting Started
 
