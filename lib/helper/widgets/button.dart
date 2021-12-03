@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Button extends StatefulWidget {
@@ -33,8 +32,8 @@ class _ButtonState extends State<Button> {
         onTap: widget.callback,
 
         child: Container(
-          width: (MediaQuery.of(context).size.width > 700)? 300: 150,
-          height: (MediaQuery.of(context).size.width > 700)? 300: 150,
+          width: MediaQuery.of(context).size.width/2.6133, //150
+          height: MediaQuery.of(context).size.width/2.6133,  //150
           decoration: BoxDecoration(
               color: Colors.tealAccent[100],
               borderRadius: BorderRadius.all(Radius.circular(10.0)),

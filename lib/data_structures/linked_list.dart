@@ -22,6 +22,12 @@ class _LinkedListDSState extends State<LinkedListDS> {
   }
 
   @override
+  void dispose() {
+    listOperations = null;
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return DefaultTabController(
         length: 2,

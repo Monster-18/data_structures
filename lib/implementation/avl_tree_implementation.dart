@@ -103,7 +103,7 @@ class _AVLImplementationState extends State<AVLImplementation> {
             //AVL Container
             Container(
               width: MediaQuery.of(context).size.width,
-              height: 400.0,
+              height: MediaQuery.of(context).size.height/1.9525,     //400
               child: Container(
                 color: Colors.red,
                 child: Zoom(
@@ -121,7 +121,7 @@ class _AVLImplementationState extends State<AVLImplementation> {
                             Container(
                               width: 1800,
                               child: ListView(
-                                  children: avl_tree(avlOperations)
+                                  children: avl_tree(context, avlOperations)
                               ),
                             )
                           ],
@@ -133,7 +133,7 @@ class _AVLImplementationState extends State<AVLImplementation> {
             ),
 
             SizedBox(
-              height: 10,
+              height: MediaQuery.of(context).size.height/78.1,   //10,
             ),
 
             //Stack Operations
@@ -153,12 +153,12 @@ class _AVLImplementationState extends State<AVLImplementation> {
                           case 0:
                             info = false;
                             error = true;
-                            errorText = "$insertionData already existed";
+                            errorText = "'$insertionData' already existed";
                             break;
                           case 1:
                             error = false;
                             info = true;
-                            infoText = "Inserted $insertionData";
+                            infoText = "Inserted '$insertionData'";
                             break;
                           case 2:
                             error = false;
@@ -200,11 +200,11 @@ class _AVLImplementationState extends State<AVLImplementation> {
                         if(!flag){
                           info = false;
                           error = true;
-                          errorText = "$deletionData not exists";
+                          errorText = "'$deletionData' not exists";
                         }else{
                           error = false;
                           info = true;
-                          infoText = "Deleted $deletionData";
+                          infoText = "Deleted '$deletionData'";
                         }
                       }catch(e){
                         try{
@@ -233,51 +233,14 @@ class _AVLImplementationState extends State<AVLImplementation> {
             ),
 
             SizedBox(
-              height: 40,
+              height: MediaQuery.of(context).size.height/19.525, //40
             ),
 
             //Info
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 60.0,
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: (error)? Colors.red: (info)? Colors.blue: Colors.black,
-                        width: 2.0,
-                        style: BorderStyle.solid
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(5.0))
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    child: Center(
-                      child:
-                      (error)?
-                      Text(
-                        errorText,
-                        style: TextStyle(
-                            fontSize: 20.0
-                        ),
-                      ):
-                      (info)?
-                      Text(
-                        infoText,
-                        style: TextStyle(
-                            fontSize: 20.0
-                        ),
-                      ):
-                      Text(''),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            displayStatus(context, error, info, errorText, infoText),
 
             SizedBox(
-              height: 40,
+              height: MediaQuery.of(context).size.height/19.525, //40
             ),
           ],
         ),

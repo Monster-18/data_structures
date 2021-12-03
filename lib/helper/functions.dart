@@ -19,10 +19,93 @@ BoxDecoration boxDecoration(){
 }
 
 
+//Display Status
+Widget displayStatus(BuildContext context, bool error, bool info, String errorText, String infoText){
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height/13.0166, //60
+      decoration: BoxDecoration(
+          border: Border.all(
+              color:
+              (error)? Colors.red: (info)? Colors.blue: Colors.black,
+              width: 2.0,
+              style: BorderStyle.solid
+          ),
+          borderRadius: BorderRadius.all(Radius.circular(5.0))
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Container(
+          child: Center(
+            child:
+            (error)?
+            Text(
+              errorText,
+              style: TextStyle(
+                  fontSize: 20.0
+              ),
+            ):
+            (info)?
+            Text(
+              infoText,
+              style: TextStyle(
+                  fontSize: 20.0
+              ),
+            ):
+            Text(''),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+
+//info
+List<Widget> infoWidget(List<String> list){
+  List<Widget> l = [];
+
+  for(String info in list){
+    l.add(
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(
+            children: [
+              Flexible(
+                child: Text(
+                  info,
+                  style: TextStyle(
+                      fontSize: 20.0
+                  ),
+                ),
+              ),
+            ],
+          ),
+        )
+    );
+
+    l.add(
+      SizedBox(
+        height: 20,
+      ),
+    );
+  }
+
+  return l;
+}
+
+
 //AppBar
 AppBar appBar(String title){
   return AppBar(
-    title: Text(title),
+    title: Text(
+        title,
+      style: TextStyle(
+        fontStyle: FontStyle.italic
+      ),
+    ),
     centerTitle: true,
     bottom: TabBar(
       tabs: [
@@ -53,13 +136,13 @@ AppBar appBar(String title){
 //Binary Tree
 
 //Node of a tree
-Widget node(String text, bool isRoot){
+Widget node(BuildContext context, String text, bool isRoot){
   return Center(
     child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        width: 100,
-        height: 100,
+        width: MediaQuery.of(context).size.width/3.92, //100
+        height: MediaQuery.of(context).size.width/3.92, //100
         decoration: BoxDecoration(
           color: (isRoot)? Colors.teal: Colors.blue,
           borderRadius: BorderRadius.circular(50),
@@ -79,15 +162,15 @@ Widget node(String text, bool isRoot){
 }
 
 //Left arrow
-Widget leftArrow(double angle){
+Widget leftArrow(BuildContext context, double angle){
   return Expanded(
     flex:1,
     child: Center(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SizedBox(
-          width: 100,
-          height: 50,
+          width: MediaQuery.of(context).size.width/3.92, //100
+          height: MediaQuery.of(context).size.width/7.84, //50,
           child: Transform.rotate(
             angle: angle,
             child: Icon(
@@ -101,15 +184,15 @@ Widget leftArrow(double angle){
 }
 
 //Right arrow
-Widget rightArrow(double angle){
+Widget rightArrow(BuildContext context, double angle){
   return Expanded(
     flex:1,
     child: Center(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SizedBox(
-          width: 100,
-          height: 50,
+          width: MediaQuery.of(context).size.width/3.92, //100
+          height: MediaQuery.of(context).size.width/7.84, //50,
           child: Transform.rotate(
             angle: angle,
             child: Icon(
@@ -131,7 +214,7 @@ Widget expand(){
 }
 
 //Tree
-List<Widget> tree(BSTOperations bstOperations){
+List<Widget> tree(BuildContext context, BSTOperations bstOperations){
   BNode root = bstOperations.root;
 
   //If tree is empty
@@ -154,7 +237,7 @@ List<Widget> tree(BSTOperations bstOperations){
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          node('${root.data}', true)
+          node(context, '${root.data}', true)
         ],
       )
   );
@@ -185,8 +268,8 @@ List<Widget> tree(BSTOperations bstOperations){
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
-                    width: 100,
-                    height: 50,
+                    width: MediaQuery.of(context).size.width/3.92, //100
+                    height: MediaQuery.of(context).size.width/7.84, //50,
                     child: Text(' '),
                   ),
                 ),
@@ -200,8 +283,8 @@ List<Widget> tree(BSTOperations bstOperations){
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
-                    width: 100,
-                    height: 50,
+                    width: MediaQuery.of(context).size.width/3.92, //100
+                    height: MediaQuery.of(context).size.width/7.84, //50,
                     child: Text(' '),
                   ),
                 ),
@@ -213,7 +296,7 @@ List<Widget> tree(BSTOperations bstOperations){
           flag = true;
           nextLevel.add(node.left);
 
-          list.add(leftArrow(left_angle));
+          list.add(leftArrow(context, left_angle));
         }else{
           nextLevel.add(null);
 
@@ -224,8 +307,8 @@ List<Widget> tree(BSTOperations bstOperations){
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
-                      width: 100,
-                      height: 50,
+                      width: MediaQuery.of(context).size.width/3.92, //100
+                      height: MediaQuery.of(context).size.width/7.84, //50,
                       child: Text(' '),
                     ),
                   ),
@@ -238,7 +321,7 @@ List<Widget> tree(BSTOperations bstOperations){
           flag = true;
           nextLevel.add(node.right);
 
-          list.add(rightArrow(right_angle));
+          list.add(rightArrow(context, right_angle));
         }else{
           nextLevel.add(null);
 
@@ -249,8 +332,8 @@ List<Widget> tree(BSTOperations bstOperations){
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
-                      width: 100,
-                      height: 50,
+                      width: MediaQuery.of(context).size.width/3.92, //100
+                      height: MediaQuery.of(context).size.width/7.84, //50,
                       child: Text(' '),
                     ),
                   ),
@@ -285,7 +368,7 @@ List<Widget> tree(BSTOperations bstOperations){
         list.add(
             Expanded(
               flex: 1,
-              child: node('${ele.data}', false),
+              child: node(context, '${ele.data}', false),
             )
         );
       }
@@ -315,7 +398,7 @@ List<Widget> tree(BSTOperations bstOperations){
 }
 
 //AVLTree
-List<Widget> avl_tree(AVLOperations avlOperations){
+List<Widget> avl_tree(BuildContext context, AVLOperations avlOperations){
   Node root = avlOperations.root;
 
   //If tree is empty
@@ -338,7 +421,7 @@ List<Widget> avl_tree(AVLOperations avlOperations){
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          node('${root.data}', true)
+          node(context, '${root.data}', true)
         ],
       )
   );
@@ -369,8 +452,8 @@ List<Widget> avl_tree(AVLOperations avlOperations){
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
-                    width: 100,
-                    height: 50,
+                    width: MediaQuery.of(context).size.width/3.92, //100
+                    height: MediaQuery.of(context).size.width/7.84, //50,
                     child: Text(' '),
                   ),
                 ),
@@ -384,8 +467,8 @@ List<Widget> avl_tree(AVLOperations avlOperations){
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
-                    width: 100,
-                    height: 50,
+                    width: MediaQuery.of(context).size.width/3.92, //100
+                    height: MediaQuery.of(context).size.width/7.84, //50,
                     child: Text(' '),
                   ),
                 ),
@@ -397,7 +480,7 @@ List<Widget> avl_tree(AVLOperations avlOperations){
           flag = true;
           nextLevel.add(node.left);
 
-          list.add(leftArrow(left_angle));
+          list.add(leftArrow(context, left_angle));
         }else{
           nextLevel.add(null);
 
@@ -408,8 +491,8 @@ List<Widget> avl_tree(AVLOperations avlOperations){
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
-                      width: 100,
-                      height: 50,
+                      width: MediaQuery.of(context).size.width/3.92, //100
+                      height: MediaQuery.of(context).size.width/7.84, //50,
                       child: Text(' '),
                     ),
                   ),
@@ -422,7 +505,7 @@ List<Widget> avl_tree(AVLOperations avlOperations){
           flag = true;
           nextLevel.add(node.right);
 
-          list.add(rightArrow(right_angle));
+          list.add(rightArrow(context, right_angle));
         }else{
           nextLevel.add(null);
 
@@ -433,8 +516,8 @@ List<Widget> avl_tree(AVLOperations avlOperations){
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
-                      width: 100,
-                      height: 50,
+                      width: MediaQuery.of(context).size.width/3.92, //100
+                      height: MediaQuery.of(context).size.width/7.84, //50,
                       child: Text(' '),
                     ),
                   ),
@@ -469,7 +552,7 @@ List<Widget> avl_tree(AVLOperations avlOperations){
         list.add(
             Expanded(
               flex: 1,
-              child: node('${ele.data}', false),
+              child: node(context, '${ele.data}', false),
             )
         );
       }
@@ -501,13 +584,13 @@ List<Widget> avl_tree(AVLOperations avlOperations){
 
 
 //Node of red black tree
-Widget rb_node(String text, bool isRed){
+Widget rb_node(BuildContext context, String text, bool isRed){
   return Center(
     child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        width: 100,
-        height: 100,
+        width: MediaQuery.of(context).size.width/3.92, //100
+        height: MediaQuery.of(context).size.width/3.92, //100,
         decoration: BoxDecoration(
           color: (isRed)? Colors.red: Colors.black,
           borderRadius: BorderRadius.circular(50),
@@ -527,7 +610,7 @@ Widget rb_node(String text, bool isRed){
 }
 
 //RBTree
-List<Widget> rb_tree(rb.RBOperations rbOperations){
+List<Widget> rb_tree(BuildContext context, rb.RBOperations rbOperations){
   rb.Node root = rbOperations.root;
 
   //If tree is empty
@@ -550,7 +633,7 @@ List<Widget> rb_tree(rb.RBOperations rbOperations){
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          rb_node('${root.data}', root.color)
+          rb_node(context, '${root.data}', root.color)
         ],
       )
   );
@@ -581,8 +664,8 @@ List<Widget> rb_tree(rb.RBOperations rbOperations){
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
-                    width: 100,
-                    height: 50,
+                    width: MediaQuery.of(context).size.width/3.92, //100
+                    height: MediaQuery.of(context).size.width/7.84, //50,
                     child: Text(' '),
                   ),
                 ),
@@ -596,8 +679,8 @@ List<Widget> rb_tree(rb.RBOperations rbOperations){
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
-                    width: 100,
-                    height: 50,
+                    width: MediaQuery.of(context).size.width/3.92, //100
+                    height: MediaQuery.of(context).size.width/7.84, //50,
                     child: Text(' '),
                   ),
                 ),
@@ -609,7 +692,7 @@ List<Widget> rb_tree(rb.RBOperations rbOperations){
           flag = true;
           nextLevel.add(node.left);
 
-          list.add(leftArrow(left_angle));
+          list.add(leftArrow(context, left_angle));
         }else{
           nextLevel.add(null);
 
@@ -620,8 +703,8 @@ List<Widget> rb_tree(rb.RBOperations rbOperations){
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
-                      width: 100,
-                      height: 50,
+                      width: MediaQuery.of(context).size.width/3.92, //100
+                      height: MediaQuery.of(context).size.width/7.84, //50,
                       child: Text(' '),
                     ),
                   ),
@@ -634,7 +717,7 @@ List<Widget> rb_tree(rb.RBOperations rbOperations){
           flag = true;
           nextLevel.add(node.right);
 
-          list.add(rightArrow(right_angle));
+          list.add(rightArrow(context, right_angle));
         }else{
           nextLevel.add(null);
 
@@ -645,8 +728,8 @@ List<Widget> rb_tree(rb.RBOperations rbOperations){
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
-                      width: 100,
-                      height: 50,
+                      width: MediaQuery.of(context).size.width/3.92, //100
+                      height: MediaQuery.of(context).size.width/7.84, //50,
                       child: Text(' '),
                     ),
                   ),
@@ -681,7 +764,7 @@ List<Widget> rb_tree(rb.RBOperations rbOperations){
         list.add(
             Expanded(
               flex: 1,
-              child: rb_node('${ele.data}', ele.color),
+              child: rb_node(context, '${ele.data}', ele.color),
             )
         );
       }

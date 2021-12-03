@@ -27,6 +27,9 @@ class _StackImplementationState extends State<StackImplementation> {
   bool info = false;
   String infoText;
 
+  //Check push button clicked
+  bool isBtnClicked = false;
+
   //Display Stack
   List<Widget> stackBody(){
     List<String> list = stack.getList();
@@ -39,7 +42,7 @@ class _StackImplementationState extends State<StackImplementation> {
         Padding(
           padding: const EdgeInsets.all(2.0),
           child: Container(
-            height: 30,
+            height: MediaQuery.of(context).size.height/26.03333,   //30
             color: (isTop)? Colors.green: Colors.red,
             child: Center(
                 child: Text(data)
@@ -65,6 +68,7 @@ class _StackImplementationState extends State<StackImplementation> {
         if(pushEleController.text.trim().isEmpty || pushEleController.text.trim().length > 10){
           pushEleController.clear();
         }else{
+          isBtnClicked = true;
           Navigator.pop(context);
         }
       },
@@ -121,12 +125,12 @@ class _StackImplementationState extends State<StackImplementation> {
             //Stack Container
             Container(
               width: MediaQuery.of(context).size.width,
-              height: 400.0,
+              height: MediaQuery.of(context).size.height/1.9525,     //400
               child: Container(
                 child: Center(
                   child: Container(
-                    width: 180,
-                    height: 250,
+                    width: MediaQuery.of(context).size.width/2.177,   //180
+                    height: MediaQuery.of(context).size.height/3.124,    //250
                     decoration: BoxDecoration(
                         border: Border(
                             left: BorderSide(
@@ -159,7 +163,7 @@ class _StackImplementationState extends State<StackImplementation> {
             ),
 
             SizedBox(
-              height: 10,
+              height: MediaQuery.of(context).size.height/78.1,   //10,
             ),
 
             //Stack Operations [Push, Pop]
@@ -170,10 +174,11 @@ class _StackImplementationState extends State<StackImplementation> {
                   onPressed: () async{
                     await alertBoxForPushingData(context);
 
-                    if(pushEleController.text.isNotEmpty){
+                    if(isBtnClicked){
                       String pushedData = pushEleController.text.trim();
                       bool flag = stack.push(pushedData);
                       pushEleController.clear();
+                      isBtnClicked = false;
                       if(!flag){
                         info = false;
                         error = true;
@@ -181,17 +186,20 @@ class _StackImplementationState extends State<StackImplementation> {
                       }else{
                         error = false;
                         info = true;
-                        infoText = "Pushed $pushedData";
+                        infoText = "Pushed  '$pushedData'";
                       }
                       setState(() {});
+                    }else{
+                      pushEleController.clear();
+                      isBtnClicked = false;
                     }
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.amber),
                   ),
                   child: Container(
-                      width: 60,
-                      height: 30,
+                      width: MediaQuery.of(context).size.width/6.5333,    //60
+                      height: MediaQuery.of(context).size.height/26.03333,   //30
                       child: Center(
                         child: Text(
                             'Push',
@@ -213,7 +221,7 @@ class _StackImplementationState extends State<StackImplementation> {
                     }else{
                       error = false;
                       info = true;
-                      infoText = "Poped $data";
+                      infoText = "Poped  '$data'";
                     }
                     setState(() {});
                   },
@@ -221,8 +229,8 @@ class _StackImplementationState extends State<StackImplementation> {
                     backgroundColor: MaterialStateProperty.all(Colors.amber),
                   ),
                   child: Container(
-                      width: 60,
-                      height: 30,
+                      width: MediaQuery.of(context).size.width/6.5333,    //60
+                      height: MediaQuery.of(context).size.height/26.03333,   //30
                       child: Center(
                         child: Text(
                           'Pop',
@@ -238,50 +246,14 @@ class _StackImplementationState extends State<StackImplementation> {
             ),
 
             SizedBox(
-              height: 40,
+              height: MediaQuery.of(context).size.height/19.525, //40
             ),
 
             //Info
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 60.0,
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: (error)? Colors.red: (info)? Colors.blue: Colors.black,
-                        width: 2.0,
-                        style: BorderStyle.solid
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(5.0))
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    child: Center(
-                      child: (error)?
-                      Text(
-                        errorText,
-                        style: TextStyle(
-                            fontSize: 20.0
-                        ),
-                      ):
-                      (info)?
-                      Text(
-                        infoText,
-                        style: TextStyle(
-                            fontSize: 20.0
-                        ),
-                      ):
-                      Text(''),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            displayStatus(context, error, info, errorText, infoText),
 
             SizedBox(
-              height: 40,
+              height: MediaQuery.of(context).size.height/19.525, //40
             ),
           ],
         ),

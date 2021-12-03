@@ -128,14 +128,14 @@ class _LinkedListImplementationState extends State<LinkedListImplementation> {
       l.add(
         //Node of a Linked List
         Container(
-          width: 100,
-          height: 50,
+          width: MediaQuery.of(context).size.width/3.92, //100
+          height: MediaQuery.of(context).size.height/15.62, //50
           child: Row(
             children: [
               Expanded(
                   flex: 2,
                   child: Container(
-                    height: 50,
+                    height: MediaQuery.of(context).size.height/15.62, //50
                     decoration: BoxDecoration(
                         color: (isHead)? Colors.yellow: Colors.blue,
                         border: Border.all(color: Colors.black, width: 1.0, style: BorderStyle.solid)
@@ -153,7 +153,7 @@ class _LinkedListImplementationState extends State<LinkedListImplementation> {
               Expanded(
                   flex: 1,
                   child: Container(
-                      height: 50,
+                      height: MediaQuery.of(context).size.height/15.62, //50
                       decoration: BoxDecoration(
                           color: (isHead)? Colors.orange: Colors.green,
                           border: Border.all(color: Colors.black, width: 1.0, style: BorderStyle.solid)
@@ -218,7 +218,7 @@ class _LinkedListImplementationState extends State<LinkedListImplementation> {
             //Space for Implementation
             Container(
               width: MediaQuery.of(context).size.width,
-              height: 400.0,
+              height: MediaQuery.of(context).size.height/1.9525,  //400
               child: Container(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -249,18 +249,18 @@ class _LinkedListImplementationState extends State<LinkedListImplementation> {
                         if(inserted){
                           error = false;
                           info = true;
-                          infoText = '"${insertDataController.text}" inserted after "${insertDataAfterController.text}"';
+                          infoText = "'${insertDataController.text}' inserted after '${insertDataAfterController.text}'";
                         }else{
                           error = true;
                           info = false;
-                          errorText = '"${insertDataAfterController.text}" => Not found';
+                          errorText = "'${insertDataAfterController.text}' => Not found";
                         }
                         changeToDefault();
                       }else{
                         listOperations.insert(insertDataController.text);
                         error = false;
                         info = true;
-                        infoText = '"${insertDataController.text}" => Inserted';
+                        infoText = "'${insertDataController.text}' => Inserted";
                         changeToDefault();
                       }
                       setState(() {});
@@ -292,11 +292,11 @@ class _LinkedListImplementationState extends State<LinkedListImplementation> {
                       if(deleted){
                         error = false;
                         info = true;
-                        infoText = '"${deleteDataController.text}" deleted successfully';
+                        infoText = "'${deleteDataController.text}' deleted successfully";
                       }else{
                         error = true;
                         info = false;
-                        errorText = '"${deleteDataController.text}" => Not found';
+                        errorText = "'${deleteDataController.text}' => Not found";
                       }
                       deleteDataController.clear();
                       setState(() {});
@@ -322,50 +322,14 @@ class _LinkedListImplementationState extends State<LinkedListImplementation> {
             ),
 
             SizedBox(
-              height: 40,
+              height: MediaQuery.of(context).size.height/19.525, //40
             ),
 
             //Info
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 60.0,
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: (error)? Colors.red: (info)? Colors.blue: Colors.black,
-                        width: 2.0,
-                        style: BorderStyle.solid
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(5.0))
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    child: Center(
-                      child:(error)?
-                      Text(
-                        errorText,
-                        style: TextStyle(
-                            fontSize: 20.0
-                        ),
-                      ):
-                      (info)?
-                      Text(
-                        infoText,
-                        style: TextStyle(
-                            fontSize: 20.0
-                        ),
-                      ):
-                      Text(''),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            displayStatus(context, error, info, errorText, infoText),
 
             SizedBox(
-              height: 40,
+              height: MediaQuery.of(context).size.height/19.525, //40
             ),
           ],
         ),

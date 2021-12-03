@@ -8,7 +8,12 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Data Structures'),
+        title: Text(
+            'Data Structures',
+          style: TextStyle(
+            fontStyle: FontStyle.italic,
+          ),
+        ),
         centerTitle: true,
       ),
       body: Container(
@@ -39,7 +44,7 @@ class Home extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: MediaQuery.of(context).size.height/39.05,   //20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -61,7 +66,7 @@ class Home extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: MediaQuery.of(context).size.height/39.05,   //20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

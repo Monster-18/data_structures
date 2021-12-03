@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:data_structures/implementation/stack_implementation.dart';
 import 'package:data_structures/operations/stack_operations.dart';
-import 'package:data_structures/info/stack_info.dart';
 
 import 'package:data_structures/helper/functions.dart';
+import 'package:data_structures/helper/widgets/info.dart';
 
 class StackDS extends StatefulWidget {
   @override
@@ -13,6 +13,14 @@ class StackDS extends StatefulWidget {
 
 class _StackDSState extends State<StackDS> {
   StackOperations stack;
+
+  //Info
+  final List<String> list = [
+    "Green color denotes data in the 'Top' position",
+    "'Push' pushes data into the Stack",
+    "'Pop' pops out data present in the Top position from the Stack",
+    "Maximum size of this Stack is 6",
+  ];
 
   @override
   void initState() {
@@ -38,7 +46,7 @@ class _StackDSState extends State<StackDS> {
               StackImplementation(
                 stack: stack,
               ),
-              StackInfo()
+              Info(list: list,)
             ],
           ),
         )

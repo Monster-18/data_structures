@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:data_structures/implementation/queue_implementation.dart';
 import 'package:data_structures/operations/queue_operations.dart';
-import 'package:data_structures/info/queue_info.dart';
 
 import 'package:data_structures/helper/functions.dart';
+import 'package:data_structures/helper/widgets/info.dart';
 
 class QueueDS extends StatefulWidget {
   @override
@@ -13,6 +13,15 @@ class QueueDS extends StatefulWidget {
 
 class _QueueDSState extends State<QueueDS> {
   QueueOperations queue;
+
+  //Info
+  final List<String> list = [
+    "Red color denotes data in the 'Front' position",
+    "Blue color denotes data in the 'Rear' position",
+    "Enqueue inserts data in the Rear position of the Queue",
+    "Dequeue removes data present in the Front position from the Queue",
+    "Maximum size of this Queue is 6",
+  ];
 
   @override
   void initState() {
@@ -38,7 +47,7 @@ class _QueueDSState extends State<QueueDS> {
               QueueImplementation(
                 queue: queue,
               ),
-              QueueInfo()
+              Info(list: list,)
             ],
           ),
         )

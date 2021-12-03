@@ -66,8 +66,8 @@ class _AlertBoxForInsertingState extends State<AlertBoxForInserting> {
     return AlertDialog(
       title: Text('Insert Data'),
       content: Container(
-        width: 350,
-        height: 210,
+        width: MediaQuery.of(context).size.width/1.12,  //350
+        height: MediaQuery.of(context).size.height/3.719,  //210
         child: Column(
           children: [
             insertData,

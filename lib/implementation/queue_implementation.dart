@@ -27,6 +27,9 @@ class _QueueImplementationState extends State<QueueImplementation> {
   bool info = false;
   String infoText;
 
+  //Check enqueue button clicked or not
+  bool isbtnClicked = false;
+
   List<Widget> queueBody(){
     List<String> list = queue.getList();
     List<Widget> l = [];
@@ -54,22 +57,22 @@ class _QueueImplementationState extends State<QueueImplementation> {
             width: 30,
             decoration: BoxDecoration(
               gradient: (both)?
-              LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.red,
-                    Colors.blue
-                  ]
-              ):
-              null,
+                LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.red,
+                      Colors.blue
+                    ]
+                ):
+                null,
               color: (both)?
-              null:
-              (isFront)?
-              Colors.red:
-              (currentIndex == index)?
-              Colors.blue:
-              Colors.green,
+                null:
+                (isFront)?
+                  Colors.red:
+                  (currentIndex == index)?
+                    Colors.blue:
+                    Colors.green,
             ),
             child: Center(
               child: RotatedBox(
@@ -103,6 +106,7 @@ class _QueueImplementationState extends State<QueueImplementation> {
         if(enqueueController.text.trim().isEmpty || enqueueController.text.trim().length > 10){
           enqueueController.clear();
         }else{
+          isbtnClicked = true;
           Navigator.pop(context);
         }
       },
@@ -159,12 +163,12 @@ class _QueueImplementationState extends State<QueueImplementation> {
             //Queue Container
             Container(
               width: MediaQuery.of(context).size.width,
-              height: 400.0,
+              height: MediaQuery.of(context).size.height/1.9525,     //400
               child: Container(
                 child: Center(
                   child: Container(
-                    width: 230,
-                    height: 160,
+                    width: MediaQuery.of(context).size.width/1.704, //230
+                    height: MediaQuery.of(context).size.height/4.88125,  //160
                     decoration: BoxDecoration(
                         border: Border(
                             top: BorderSide(
@@ -192,7 +196,7 @@ class _QueueImplementationState extends State<QueueImplementation> {
             ),
 
             SizedBox(
-              height: 10,
+              height: MediaQuery.of(context).size.height/78.1,   //10,
             ),
 
             //Queue Operations
@@ -203,10 +207,11 @@ class _QueueImplementationState extends State<QueueImplementation> {
                   onPressed: () async{
                     await alertBoxForEnqueueData(context);
 
-                    if(enqueueController.text.isNotEmpty){
+                    if(isbtnClicked){
                       String data = enqueueController.text.trim();
                       bool flag = queue.enqueue(data);
                       enqueueController.clear();
+                      isbtnClicked = false;
                       if(!flag){
                         info = false;
                         error = true;
@@ -214,9 +219,11 @@ class _QueueImplementationState extends State<QueueImplementation> {
                       }else{
                         error = false;
                         info = true;
-                        infoText = '"$data" entered the Queue';
+                        infoText = "'$data'  entered the Queue";
                       }
                       setState(() {});
+                    }else{
+                      enqueueController.clear();
                     }
                   },
                   style: ButtonStyle(
@@ -243,7 +250,7 @@ class _QueueImplementationState extends State<QueueImplementation> {
                     }else{
                       error = false;
                       info = true;
-                      infoText = '"$data" removed from the Queue';
+                      infoText = "'$data'  removed from the Queue";
                     }
                     setState(() {});
                   },
@@ -265,52 +272,14 @@ class _QueueImplementationState extends State<QueueImplementation> {
             ),
 
             SizedBox(
-              height: 40,
+              height: MediaQuery.of(context).size.height/19.525, //40
             ),
 
             //Info
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 60.0,
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color:
-                        (error)? Colors.red: (info)? Colors.blue: Colors.black,
-                        width: 2.0,
-                        style: BorderStyle.solid
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(5.0))
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    child: Center(
-                      child:
-                      (error)?
-                      Text(
-                        errorText,
-                        style: TextStyle(
-                            fontSize: 20.0
-                        ),
-                      ):
-                      (info)?
-                      Text(
-                        infoText,
-                        style: TextStyle(
-                            fontSize: 20.0
-                        ),
-                      ):
-                      Text(''),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            displayStatus(context, error, info, errorText, infoText),
 
             SizedBox(
-              height: 40,
+              height: MediaQuery.of(context).size.height/19.525, //40
             ),
           ],
         ),
