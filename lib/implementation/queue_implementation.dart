@@ -157,8 +157,8 @@ class _QueueImplementationState extends State<QueueImplementation> {
     return SingleChildScrollView(
       child: Container(
         decoration: boxDecoration(),
+        constraints: boxConstraints(context),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             //Queue Container
             Container(
@@ -279,7 +279,7 @@ class _QueueImplementationState extends State<QueueImplementation> {
             displayStatus(context, error, info, errorText, infoText),
 
             SizedBox(
-              height: MediaQuery.of(context).size.height/19.525, //40
+              height: MediaQuery.of(context).size.height/78.1,   //10,
             ),
           ],
         ),

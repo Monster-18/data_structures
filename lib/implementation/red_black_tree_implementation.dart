@@ -91,8 +91,8 @@ class _RBImplementationState extends State<RBImplementation> {
     return SingleChildScrollView(
       child: Container(
         decoration: boxDecoration(),
+        constraints: boxConstraints(context),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             //AVL Container
             Container(
@@ -236,7 +236,7 @@ class _RBImplementationState extends State<RBImplementation> {
             displayStatus(context, error, info, errorText, infoText),
 
             SizedBox(
-              height: MediaQuery.of(context).size.height/19.525, //40
+              height: MediaQuery.of(context).size.height/78.1,   //10,
             ),
           ],
         ),

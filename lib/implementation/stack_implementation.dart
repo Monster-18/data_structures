@@ -119,8 +119,8 @@ class _StackImplementationState extends State<StackImplementation> {
     return SingleChildScrollView(
       child: Container(
         decoration: boxDecoration(),
+        constraints: boxConstraints(context),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             //Stack Container
             Container(
@@ -253,7 +253,7 @@ class _StackImplementationState extends State<StackImplementation> {
             displayStatus(context, error, info, errorText, infoText),
 
             SizedBox(
-              height: MediaQuery.of(context).size.height/19.525, //40
+              height: MediaQuery.of(context).size.height/78.1,   //10,
             ),
           ],
         ),

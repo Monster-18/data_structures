@@ -98,8 +98,8 @@ class _BSTImplementationState extends State<BSTImplementation> {
     return SingleChildScrollView(
       child: Container(
         decoration: boxDecoration(),
+        constraints: boxConstraints(context),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             //BST Container
             Container(
@@ -241,7 +241,7 @@ class _BSTImplementationState extends State<BSTImplementation> {
             displayStatus(context, error, info, errorText, infoText),
 
             SizedBox(
-              height: MediaQuery.of(context).size.height/19.525, //40
+              height: MediaQuery.of(context).size.height/78.1,   //10,
             ),
           ],
         ),

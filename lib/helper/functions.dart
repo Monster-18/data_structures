@@ -14,7 +14,18 @@ BoxDecoration boxDecoration(){
           Colors.lightBlueAccent[100],
           Colors.lightGreenAccent[100]
         ],
-      )
+      ),
+  );
+}
+
+BoxConstraints boxConstraints(BuildContext context){
+  var padding = MediaQuery.of(context).padding;
+  var appbar = appBar("Hi").preferredSize.height;
+
+  double height = MediaQuery.of(context).size.height - padding.top - padding.bottom - appbar;
+
+  return BoxConstraints(
+      minHeight: height
   );
 }
 
@@ -109,21 +120,27 @@ AppBar appBar(String title){
     centerTitle: true,
     bottom: TabBar(
       tabs: [
-        Tab(
-          child: Text(
-            'Working',
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16.0
+        Container(
+          height: 45,
+          child: Tab(
+            child: Text(
+              'Working',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16.0
+              ),
             ),
           ),
         ),
-        Tab(
-          child: Text(
-            'Info',
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16.0
+        Container(
+          height: 45,
+          child: Tab(
+            child: Text(
+              'Info',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16.0
+              ),
             ),
           ),
         ),
