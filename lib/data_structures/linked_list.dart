@@ -32,7 +32,7 @@ class _LinkedListDSState extends State<LinkedListDS> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-          appBar: appBar('Linked List'),
+          appBar: appBar(context, 'Linked List'),
           body: TabBarView(
             children: [
               LinkedListImplementation(

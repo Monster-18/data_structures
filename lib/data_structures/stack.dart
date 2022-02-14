@@ -40,7 +40,7 @@ class _StackDSState extends State<StackDS> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-          appBar: appBar('Stack'),
+          appBar: appBar(context, 'Stack'),
           body: TabBarView(
             children: [
               StackImplementation(

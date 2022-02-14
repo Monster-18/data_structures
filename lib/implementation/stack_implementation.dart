@@ -205,7 +205,7 @@ class _StackImplementationState extends State<StackImplementation> {
                             'Push',
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 16
+                              fontSize: MediaQuery.of(context).size.width/24.545  //16.0
                             ),
                         ),
                       )
@@ -236,7 +236,7 @@ class _StackImplementationState extends State<StackImplementation> {
                           'Pop',
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 16
+                              fontSize: MediaQuery.of(context).size.width/24.545  //16.0
                           ),
                         ),
                       )

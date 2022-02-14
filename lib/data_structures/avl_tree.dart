@@ -45,7 +45,7 @@ class _AVLDSState extends State<AVLDS> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-          appBar: appBar('AVL Tree'),
+          appBar: appBar(context, 'AVL Tree'),
           body: TabBarView(
             children: [
               AVLImplementation(

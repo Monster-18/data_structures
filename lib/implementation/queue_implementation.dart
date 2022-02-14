@@ -80,7 +80,7 @@ class _QueueImplementationState extends State<QueueImplementation> {
                 child: Text(
                   data,
                   style: TextStyle(
-                      fontSize: 16.0
+                      fontSize: MediaQuery.of(context).size.width/24.545  //16.0
                   ),
                 ),
               ),
@@ -235,7 +235,7 @@ class _QueueImplementationState extends State<QueueImplementation> {
                       'Enqueue',
                       style: TextStyle(
                           color: Colors.black,
-                          fontSize: 16
+                          fontSize: MediaQuery.of(context).size.width/24.545  //16.0
                       ),
                     ),
                   ),
@@ -263,7 +263,7 @@ class _QueueImplementationState extends State<QueueImplementation> {
                       'Dequeue',
                       style: TextStyle(
                           color: Colors.black,
-                          fontSize: 16
+                          fontSize: MediaQuery.of(context).size.width/24.545  //16.0
                       ),
                     ),
                   ),

@@ -81,7 +81,7 @@ class LinkedListInfo extends StatelessWidget {
                   height: MediaQuery.of(context).size.height/39.05, //20
                 ),
                 Column(
-                  children: infoWidget(list),
+                  children: infoWidget(context, list),
                 )
               ],
             ),

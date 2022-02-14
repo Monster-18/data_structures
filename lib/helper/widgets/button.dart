@@ -57,7 +57,7 @@ class _ButtonState extends State<Button> {
                   '${widget.title1}',
                   style: TextStyle(
                       decoration: TextDecoration.none,
-                      fontSize: 26.0
+                      fontSize: MediaQuery.of(context).size.width/15.104    //26.0
                   ),
                 ),
               ),
@@ -67,7 +67,7 @@ class _ButtonState extends State<Button> {
                       '${widget.title2}',
                       style: TextStyle(
                           decoration: TextDecoration.none,
-                          fontSize: 26.0
+                          fontSize: MediaQuery.of(context).size.width/15.104 //26.0
                       ),
                     ),
                   ):

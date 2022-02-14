@@ -20,7 +20,7 @@ BoxDecoration boxDecoration(){
 
 BoxConstraints boxConstraints(BuildContext context){
   var padding = MediaQuery.of(context).padding;
-  var appbar = appBar("Hi").preferredSize.height;
+  var appbar = appBar(context, "Hi").preferredSize.height;
 
   double height = MediaQuery.of(context).size.height - padding.top - padding.bottom - appbar;
 
@@ -55,14 +55,14 @@ Widget displayStatus(BuildContext context, bool error, bool info, String errorTe
             Text(
               errorText,
               style: TextStyle(
-                  fontSize: 20.0
+                  fontSize: MediaQuery.of(context).size.width/19.63 //20.0
               ),
             ):
             (info)?
             Text(
               infoText,
               style: TextStyle(
-                  fontSize: 20.0
+                  fontSize: MediaQuery.of(context).size.width/19.63  //20.0
               ),
             ):
             Text(''),
@@ -75,7 +75,7 @@ Widget displayStatus(BuildContext context, bool error, bool info, String errorTe
 
 
 //info
-List<Widget> infoWidget(List<String> list){
+List<Widget> infoWidget(BuildContext context, List<String> list){
   List<Widget> l = [];
 
   for(String info in list){
@@ -88,7 +88,7 @@ List<Widget> infoWidget(List<String> list){
                 child: Text(
                   info,
                   style: TextStyle(
-                      fontSize: 20.0
+                      fontSize: MediaQuery.of(context).size.width/19.63 //20.0
                   ),
                 ),
               ),
@@ -99,7 +99,7 @@ List<Widget> infoWidget(List<String> list){
 
     l.add(
       SizedBox(
-        height: 20,
+        height: MediaQuery.of(context).size.height/35.945  //20,
       ),
     );
   }
@@ -109,7 +109,7 @@ List<Widget> infoWidget(List<String> list){
 
 
 //AppBar
-AppBar appBar(String title){
+AppBar appBar(BuildContext context, String title){
   return AppBar(
     title: Text(
         title,
@@ -127,7 +127,7 @@ AppBar appBar(String title){
               'Working',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 16.0
+                  //fontSize: MediaQuery.of(context).size.width/24.545  //16.0
               ),
             ),
           ),
@@ -139,7 +139,7 @@ AppBar appBar(String title){
               'Info',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 16.0
+                  //fontSize: MediaQuery.of(context).size.width/24.545  //16.0
               ),
             ),
           ),
@@ -169,7 +169,7 @@ Widget node(BuildContext context, String text, bool isRoot){
               text,
             style: TextStyle(
               color: Colors.white,
-              fontSize: 30
+              fontSize: MediaQuery.of(context).size.width/13.09  //30
             ),
           ),
         ),
@@ -617,7 +617,7 @@ Widget rb_node(BuildContext context, String text, bool isRed){
             text,
             style: TextStyle(
                 color: Colors.white,
-                fontSize: 30
+                fontSize: MediaQuery.of(context).size.width/13.09 //30
             ),
           ),
         ),

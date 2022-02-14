@@ -55,7 +55,7 @@ class _AlertBoxForInsertingState extends State<AlertBoxForInserting> {
       controller: insertDataAfterController,
       decoration: InputDecoration(
           hintText: 'Data...',
-          helperText: 'Limit: Enter existing data',
+          helperText: 'Enter existing data',
           helperStyle: TextStyle(
               color: Colors.deepPurpleAccent
           )
@@ -67,7 +67,7 @@ class _AlertBoxForInsertingState extends State<AlertBoxForInserting> {
       title: Text('Insert Data'),
       content: Container(
         width: MediaQuery.of(context).size.width/1.12,  //350
-        height: MediaQuery.of(context).size.height/3.719,  //210
+        height: MediaQuery.of(context).size.height/2.8,  //278
         child: Column(
           children: [
             insertData,

@@ -185,7 +185,7 @@ class _LinkedListImplementationState extends State<LinkedListImplementation> {
             'NULL',
             style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 20.0
+                fontSize: MediaQuery.of(context).size.width/19.63   //20.0
             ),
           ),
         )
@@ -277,7 +277,7 @@ class _LinkedListImplementationState extends State<LinkedListImplementation> {
                         'Insert',
                       style: TextStyle(
                           color: Colors.black,
-                          fontSize: 16
+                          fontSize: MediaQuery.of(context).size.width/24.545  //16
                       ),
                     ),
                   ),
@@ -313,7 +313,7 @@ class _LinkedListImplementationState extends State<LinkedListImplementation> {
                         'Delete',
                       style: TextStyle(
                           color: Colors.black,
-                          fontSize: 16
+                          fontSize: MediaQuery.of(context).size.width/24.545  //16
                       ),
                     ),
                   ),

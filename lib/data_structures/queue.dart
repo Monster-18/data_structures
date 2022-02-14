@@ -41,7 +41,7 @@ class _QueueDSState extends State<QueueDS> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-          appBar: appBar('Queue'),
+          appBar: appBar(context, 'Queue'),
           body: TabBarView(
             children: [
               QueueImplementation(

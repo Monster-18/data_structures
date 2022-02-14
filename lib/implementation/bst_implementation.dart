@@ -187,7 +187,16 @@ class _BSTImplementationState extends State<BSTImplementation> {
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.amber),
                   ),
-                  child: Text('Insert'),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    child: Text(
+                      'Insert',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: MediaQuery.of(context).size.width/24.545  //16
+                      ),
+                    ),
+                  ),
                 ),
                 TextButton(
                   onPressed: () async{
@@ -228,7 +237,16 @@ class _BSTImplementationState extends State<BSTImplementation> {
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.amber),
                   ),
-                  child: Text('Delete'),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    child: Text(
+                      'Delete',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: MediaQuery.of(context).size.width/24.545  //16
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),

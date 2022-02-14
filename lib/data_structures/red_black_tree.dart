@@ -46,7 +46,7 @@ class _RBDSState extends State<RBDS> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-          appBar: appBar('Red Black Tree'),
+          appBar: appBar(context, 'Red Black Tree'),
           body: TabBarView(
             children: [
               RBImplementation(

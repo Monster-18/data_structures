@@ -41,7 +41,7 @@ class _BSTDSState extends State<BSTDS> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-          appBar: appBar('Binary Search Tree'),
+          appBar: appBar(context, 'Binary Search Tree'),
           body: TabBarView(
             children: [
               BSTImplementation(

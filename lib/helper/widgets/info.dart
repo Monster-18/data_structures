@@ -16,7 +16,7 @@ class Info extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(8.0),
             child: Column(
-              children: infoWidget(list),
+              children: infoWidget(context, list),
             ),
           ),
         ),
